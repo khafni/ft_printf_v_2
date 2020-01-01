@@ -1,3 +1,10 @@
+#include <stdio.h>
+#include <stdarg.h>
+/*
+** simple macros deffinition that will be used for
+** storing flags states 
+*/
+
 #define ZEROPAD 1
 #define SIGN 2
 #define PLUS 4
