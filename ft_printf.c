@@ -1,11 +1,19 @@
 #include "ft_printf.h"
 
+int ft_parser (const char *format, va_list args)
+{
+
+}
 int	ft_printf (const char *format, ...)
 {
-	char ft_printf_buff[1024]; // gonna change it after to be dynamic
+	spc p_list[];
+	int printed
 	va_list args;
 	int printf_count;
-	printed = ft_vsprintf (ft_printf_buff, format, args);
+
+	p_list[] = {
+		{"c", 
+	printed = ft_f (ft_printf_buff, format, args);
 	va_end(args);
 
 }
