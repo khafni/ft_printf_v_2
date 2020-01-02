@@ -13,6 +13,7 @@ typedef struct
 ** simple macros deffinition that will be used for
 ** storing flags states 
 */
+typedef struct 
 
 #define ZEROPAD 1
 #define SIGN 2
@@ -21,3 +22,13 @@ typedef struct
 #define LEFT 16
 #define SMALL 32
 #define SPECIAL 64
+
+typedef	struct
+{
+	char	specifier;
+	int	length;
+	int	width;
+	size_t	presision;
+	int	flags;
+}	t_format;
+
