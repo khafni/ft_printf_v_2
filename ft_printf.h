@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <stdarg.h>
 
+typedef struct
+{
+	char *spec;
+	int (*f)(va_list);
+} specifier;
+
 /*
 ** a struct that holds the specifier and the its corresponding parsing function 
 */
@@ -23,12 +29,16 @@ typedef struct
 #define SMALL 32
 #define SPECIAL 64
 
+/*
+** a struct that holds data about the whole format of
+** ft_printf including the flags
+*/
+
 typedef	struct
 {
 	char	specifier;
-	int	length;
-	int	width;
+	int		length;
+	int		width;
 	size_t	presision;
-	int	flags;
+	int		flags;
 }	t_format;
-
