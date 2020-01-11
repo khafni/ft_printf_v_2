@@ -1,5 +1,6 @@
 #include "ft_printf.h"
 
+int g_flags_state = 0;
 
 t_format	*format_init(void)
 {
@@ -13,7 +14,12 @@ t_format	*format_init(void)
 	format->specifier = '0';
 	return (format);
 }
+int flags_s_a (*format)
+{
+    
 
+
+}
 int ft_parser (const char *format, va_list args)
 {
 	int flags;
@@ -36,21 +42,9 @@ int	ft_printf (const char *format, ...)
 {
 	int printed
 	va_list args;
-	specifier	s_list[9];
 	t_format format;
 	
 	format = format_init();
-	s_list[8] = 
-	{
-		{"c", ft_printf_char},
-		{"s", ft_printf_string},
-		{"p", ft_printf_address},
-		{"d", ft_printf_integer},
-		{"i", ft_printf_integer},
-		{"u", ft_printf_uinteger},
-		{"x", ft_printf_uhinteger},
-		{"X", ft_printf_uhinteger}
-	}
 	printed = ft_parser (ft_printf_buff, format, args);
 	va_end(args);
 

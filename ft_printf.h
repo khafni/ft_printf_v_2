@@ -7,14 +7,7 @@ typedef struct
 	int (*f)(va_list);
 } specifier;
 
-/*
-** a struct that holds the specifier and the its corresponding parsing function 
-*/
-typedef struct
-{
-	char *specifier;
-	int (*)(va_list);
-} spc; 
+ 
 /*
 ** simple macros deffinition that will be used for
 ** storing flags states 
