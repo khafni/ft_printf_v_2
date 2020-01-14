@@ -15,16 +15,14 @@ t_format	*format_init(void)
 	t_format *format;
 	if(!(format = malloc (sizeof(t_format))))
 		return (NULL);
-	if(!(format->flags = malloc(sizeof(t_flags))))
-		return (NULL);
-	format->flags->minus = 0;
-	format->flags->zero = 0;
-	format->flags->point = 0;
-	format->flags->asterisk = 0;
-	format->width = 0;
-	format->presision = 0;
-	format->length = 0;
 	format->specifier = '0';
+	format->field_width = 0;
+	format->precision = 0;
+	format->minus = 0;
+	format->plus = 0;
+	format->hashtag = 0;
+	format->zero = 0;
+
 	return (format);
 }
 void	flags_P_filler(char *str, t_format *format)
@@ -47,11 +45,9 @@ void	flags_P_filler(char *str, t_format *format)
 /*
 **	function that gets the field width value
 */
-int field_width(char *format, va_list vlist)
+int field_width(char *format, t_format *format, va_list vlist)
 {
-	int fw;
 
-	fw = 0;
 	while (*format && *format != '.')
 	{
 		if (ft_isdigit(*format))

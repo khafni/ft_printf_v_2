@@ -9,16 +9,6 @@
 #define SMALL 32
 #define SPECIAL 64
 
-/*
-** a struct that holds data about ft_printf flags
-*/
-typedef struct
-{
-	int minus;
-	int plus;
-	int hashtag;
-	int zero;
-}	t_flags;
 
 /*
 ** a struct that holds data about the whole format of
@@ -27,8 +17,10 @@ typedef struct
 typedef	struct
 {
 	char	specifier;
-	int		length;
-	int		width;
-	size_t	presision;
-	t_flags	*flags;
+	int		field_width;
+	int		precision;
+	int 	minus;
+	int 	plus;
+	int 	hashtag;
+	int 	zero;
 }	t_format;
