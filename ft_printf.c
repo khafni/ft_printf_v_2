@@ -14,12 +14,7 @@ t_format	*format_init(void)
 	format->specifier = '0';
 	return (format);
 }
-int flags_s_a (*format)
-{
-    
 
-
-}
 int ft_parser (const char *format, va_list args)
 {
 	int flags;

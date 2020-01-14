@@ -1,19 +1,6 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-typedef struct
-{
-	char *spec;
-	int (*f)(va_list);
-} specifier;
-
- 
-/*
-** simple macros deffinition that will be used for
-** storing flags states 
-*/
-typedef struct 
-
 #define ZEROPAD 1
 #define SIGN 2
 #define PLUS 4
@@ -23,15 +10,25 @@ typedef struct
 #define SPECIAL 64
 
 /*
+** a struct that holds data about ft_printf flags
+*/
+typedef struct
+{
+	int minus;
+	int plus;
+	int hashtag;
+	int zero;
+}	t_flags;
+
+/*
 ** a struct that holds data about the whole format of
 ** ft_printf including the flags
 */
-
 typedef	struct
 {
 	char	specifier;
 	int		length;
 	int		width;
 	size_t	presision;
-	int		flags;
+	t_flags	*flags;
 }	t_format;
