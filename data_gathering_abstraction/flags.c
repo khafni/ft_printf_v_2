@@ -62,16 +62,18 @@ void flags_filler(char *str, t_format *format)
 */
 void field_width_getter(char *format, t_format *holder, va_list vlist)
 {
-
-	while (*format && *format == '.')
+	format++;
+	while (*format && *format != '.')
 	{
 		if (ft_isdigit(*format))
 		{
 			holder->field_width = atoi(format);
+			break ;
 		}
 		else if (*format == '*')
 		{
 			holder->field_width = va_arg(vlist, int);
+			break ;
 		}
 		format++;
 	}
@@ -90,10 +92,12 @@ void precision_getter(char *format, t_format *holder, va_list vlist)
 			if (ft_isdigit(*format))
 			{
 				holder->precision = atoi(format);
+				break ;
 			}
 			else if (*format == '*')
 			{
 				holder->precision = va_arg(vlist, int);
+				break ;
 			}
 		}
 		format++;
@@ -113,28 +117,28 @@ t_format *get_data (char *f_sstr, va_list vlist)
 }
 void data_debugging (t_format *holder)
 {
-	printf ("%c\n", holder->specifier);
-	printf ("%d\n", holder->field_width);
-	printf ("%d\n", holder->precision);
-	printf ("%d\n", holder->minus);
-	printf ("%d\n", holder->plus);
-	printf ("%d\n", holder->hashtag);
-	printf ("%d", holder->zero);
+	printf ("specifier : %c\n", holder->specifier);
+	printf ("fw : %d\n", holder->field_width);
+	printf ("pr : %d\n", holder->precision);
+	printf ("- : %d\n", holder->minus);
+	printf ("+ : %d\n", holder->plus);
+	printf ("# : %d\n", holder->hashtag);
+	printf ("0 : %d", holder->zero);
 }
 
-int ft_printf(char *format, ...)
+int ft_printf(char *str, ...)
 {
 	va_list alist;
-	t_format 
+	t_format *format;
 
-	va_start (alist, format);
-	data_debugging(get_data(format, alist));
+	va_start (alist, str);
+	data_debugging(get_data(str, alist));
 	va_end(alist);
 	return (1);
 }
 
 int main()
 {
-	ft_printf("%+++++d");
+	ft_printf("%*.42d", 666);
 	return (0);
 }
