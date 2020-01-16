@@ -139,6 +139,6 @@ int ft_printf(char *str, ...)
 
 int main()
 {
-	ft_printf("%*.42d", 666);
+	ft_printf("%-----++++++00*.*d", 666, 42);
 	return (0);
 }
