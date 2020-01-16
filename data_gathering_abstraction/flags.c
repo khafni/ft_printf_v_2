@@ -10,6 +10,32 @@ int ft_isdigit(int c)
 	return (0);
 }
 
+int		ft_atoi(const char *str)
+{
+	int				i;
+	unsigned long	nb;
+	int				neg;
+
+	i = 0;
+	nb = 0;
+	neg = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	if (str[i] == '-')
+		neg = -1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while ((str[i] >= '0') && (str[i] <= '9'))
+	{
+		nb = nb * 10 + str[i] - '0';
+		if (nb > 9223372036854775807)
+			return (neg < 0 ? 0 : -1);
+		i++;
+	}
+	return (neg * nb);
+}
+
+
 char specifier_extractor(char *s)
 {
 	s++;
@@ -65,6 +91,8 @@ void field_width_getter(char *format, t_format *holder, va_list vlist)
 	format++;
 	while (*format && *format != '.')
 	{
+		while (*format == '0')
+			format++;
 		if (ft_isdigit(*format))
 		{
 			holder->field_width = atoi(format);
@@ -72,6 +100,7 @@ void field_width_getter(char *format, t_format *holder, va_list vlist)
 		}
 		else if (*format == '*')
 		{
+			printf("greger\n");
 			holder->field_width = va_arg(vlist, int);
 			break ;
 		}
@@ -103,7 +132,9 @@ void precision_getter(char *format, t_format *holder, va_list vlist)
 		format++;
 	}
 }
-
+/*
+** the function to get the the data
+*/
 t_format *get_data (char *f_sstr, va_list vlist)
 {
 	t_format *container;
@@ -139,6 +170,7 @@ int ft_printf(char *str, ...)
 
 int main()
 {
-	ft_printf("%-----++++++00*.*d", 666, 42);
+	//ft_printf("%----++++#000*.664d", 55);
+	printf("%55.22c", 'c');
 	return (0);
 }
