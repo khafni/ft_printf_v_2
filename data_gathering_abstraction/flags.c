@@ -95,7 +95,7 @@ void field_width_getter(char *format, t_format *holder, va_list vlist)
 			format++;
 		if (ft_isdigit(*format))
 		{
-			holder->field_width = atoi(format);
+			holder->field_width = ft_atoi(format);
 			break ;
 		}
 		else if (*format == '*')
@@ -120,7 +120,7 @@ void precision_getter(char *format, t_format *holder, va_list vlist)
 			format++;
 			if (ft_isdigit(*format))
 			{
-				holder->precision = atoi(format);
+				holder->precision = ft_atoi(format);
 				break ;
 			}
 			else if (*format == '*')
@@ -155,22 +155,4 @@ void data_debugging (t_format *holder)
 	printf ("+ : %d\n", holder->plus);
 	printf ("# : %d\n", holder->hashtag);
 	printf ("0 : %d", holder->zero);
-}
-
-int ft_printf(char *str, ...)
-{
-	va_list alist;
-	t_format *format;
-
-	va_start (alist, str);
-	data_debugging(get_data(str, alist));
-	va_end(alist);
-	return (1);
-}
-
-int main()
-{
-	//ft_printf("%----++++#000*.664d", 55);
-	printf("%55.22c", 'c');
-	return (0);
 }
