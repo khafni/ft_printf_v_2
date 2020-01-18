@@ -2,14 +2,49 @@
 #include <stdio.h>
 #include "../data_gathering_abstraction/flags.c"
 
-
-
-void print_n_space(int n, int size)
+void string_cut(char *string, int length, int precision)
 {
-    while (n && size < )
+    int i;
+
+    i = 0;
+    if (precision < length)
     {
-        ft_putchar_fd(' ', 1);
-        n--;
+        while (i != precision)
+            i++;
+        string[i] = '\0';
+    }
+}
+
+void	ft_putstr_pre(char *s,int pre)
+{
+	if (s == NULL)
+		return ;
+    if (!pre)
+    {
+        ft_putstr_fd(s, 1);
+        return ;
+    }
+    else 
+    {
+        while (*s && pre)
+        {
+            ft_putchar_fd(*s, 1);
+            s++;
+            pre--;
+        }
+    }
+}
+
+void print_n_space(int fw, int size)
+{
+    if (fw > size)
+    {
+        fw -= size;
+        while (fw)
+        {
+            ft_putchar_fd(' ', 1);
+            fw--;
+        }
     }
 }
 
@@ -17,15 +52,15 @@ int ft_strnlen(char *str, int n)
 {
     int i;
 
-	i = 0;
-	while (str[i] && i < n)
-	{
-		i++;
-	}
-	return (i);
+    i = 0;
+    while (str[i] && i < n)
+    {
+        i++;
+    }
+    return (i);
 }
 
-void print_string (char *fstr, va_list alist)
+void print_string(char *fstr, va_list alist)
 {
     t_format *holder;
     int ls;
@@ -37,11 +72,15 @@ void print_string (char *fstr, va_list alist)
     ls = ft_strnlen(fstr, holder->precision);
     l = ft_strlen(fstr);
     if (!holder->minus)
-        {
-            print_n_space(holder->field_width - 1, );
-            ft_putstr_fd(va_arg(alist, char *), 1);
-        }
-    
+    {
+        print_n_space(holder->field_width - 1, l);
+        ft_putstr_pre(va_arg(alist, char *), holder->precision);
+    }
+    else
+    {
+        ft_putstr_pre(va_arg(alist, char *), holder->precision);
+        print_n_space(holder->field_width, l);
+    }
 }
 
 void ft_printf(char *str, ...)
@@ -50,11 +89,10 @@ void ft_printf(char *str, ...)
     va_start(ab, str);
     print_string(str, ab);
     va_end(ab);
-   
 }
 
 int main()
 {
-    ft_printf("%20s", "momo");
+    ft_printf("%6s", "abcdefg");
     return (0);
 }
