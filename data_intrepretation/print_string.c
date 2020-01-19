@@ -35,12 +35,12 @@ void	ft_putstr_pre(char *s,int pre)
     }
 }
 
-void print_n_space(int fw, int size)
+void print_n_space(int fw, int pr, int size)
 {
-    if (fw > size)
+    if (fw > size && pr > size)
     {
         fw -= size;
-        while (fw)
+        while (fw > 1)
         {
             ft_putchar_fd(' ', 1);
             fw--;
@@ -64,22 +64,22 @@ void print_string(char *fstr, va_list alist)
 {
     t_format *holder;
     int ls;
-    int l;
+    int size;
     int fw;
 
     holder = get_data(fstr, alist);
     fw = holder->field_width;
     ls = ft_strnlen(fstr, holder->precision);
-    l = ft_strlen(fstr);
+    size = ft_strlen(fstr);
     if (!holder->minus)
     {
-        print_n_space(holder->field_width - 1, l);
+        print_n_space(fw, holder->precision, size);
         ft_putstr_pre(va_arg(alist, char *), holder->precision);
     }
     else
     {
         ft_putstr_pre(va_arg(alist, char *), holder->precision);
-        print_n_space(holder->field_width, l);
+        print_n_space(fw + 1, holder->precision, size);
     }
 }
 
@@ -93,6 +93,6 @@ void ft_printf(char *str, ...)
 
 int main()
 {
-    ft_printf("%6s", "abcdefg");
+    printf("%5.3s", "abcd");
     return (0);
 }

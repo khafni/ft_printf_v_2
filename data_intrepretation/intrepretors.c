@@ -2,7 +2,7 @@
 #include "../data_gathering_abstraction/flags.c"
 #include "../libft/libft.h"
 
-void print_n_space(int n)
+void c_print_n_space(int n)
 {
     while (n--)
     {
@@ -19,11 +19,11 @@ int print_char(char *fstr, va_list alist)
         if (holder->minus > 0)
         {
             ft_putchar_fd(va_arg(alist, int), 1);
-            print_n_space(holder->field_width - 1);
+            c_print_n_space(holder->field_width - 1);
         }
         else
         {
-            print_n_space(holder->field_width - 1);
+            c_print_n_space(holder->field_width - 1);
             ft_putchar_fd(va_arg(alist, int), 1);
         }
     }
