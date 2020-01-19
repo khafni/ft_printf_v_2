@@ -35,11 +35,15 @@ void	ft_putstr_pre(char *s,int pre)
     }
 }
 
-void print_n_space(int fw, int size)
+void print_n_space(int fw, int size, int precision)
 {
+    printf("%d %d\n", size, precision);
+    if (size > precision)
+        size = precision;
     if (fw > size)
     {
         fw -= size;
+        printf("number of spaces to be printed : %d\n", fw);
         while (fw > 1)
         {
             ft_putchar_fd(' ', 1);
@@ -73,13 +77,13 @@ void print_string(char *fstr, va_list alist)
     size = ft_strlen(fstr);
     if (!holder->minus)
     {
-        print_n_space(fw,  size);
+        print_n_space(fw + 1,  size, holder->precision);
         ft_putstr_pre(va_arg(alist, char *), holder->precision);
     }
     else
     {
         ft_putstr_pre(va_arg(alist, char *), holder->precision);
-        print_n_space(fw + 1, size);
+        print_n_space(fw + 1, size, holder->precision);
     }
 }
 
@@ -93,6 +97,6 @@ void ft_printf(char *str, ...)
 
 int main()
 {
-    ft_printf("%4s", "abcd");
+    ft_printf("%-6.1s", "abcd");
     return (0);
 }
