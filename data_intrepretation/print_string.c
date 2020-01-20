@@ -95,6 +95,6 @@ void ft_printf(char *str, ...)
 
 int main()
 {
-    ft_printf("%-10.1s", "abcd");
+    printf("%-10s", "abcd");
     return (0);
 }
