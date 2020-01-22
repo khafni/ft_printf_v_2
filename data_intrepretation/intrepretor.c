@@ -76,6 +76,10 @@ int intrepert(char *fstr, va_list alist, int number)
     result = result_init();
     spaces_calculator(holder, result, ft_strlen(str));
     zeros_calculator(holder, result, ft_strlen(str));
+    if (holder->minus)
+    {
+        result->left = 1;
+    }
     //printf("%d", holder->zero);
     //printf("0 : %d\nspaces: %d\nmc:  %d", result->zeros, result->spaces, result->max_characters);
     printer(result);
