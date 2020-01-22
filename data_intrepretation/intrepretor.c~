@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include "../data_gathering_abstraction/flags.c"
+#include "../libft/libft.h"
+#include "intrepretor.h"
+
+t_result *result_init(void)
+{
+    t_result *result;
+
+    if (!malloc(sizeof(t_result)))
+        return (NULL);
+    result->spaces = 0;
+    result->max_characters = -1;
+    result->zeros = 0;
+    return (result);
+}
+
+void spaces_calculator(t_format *holder, t_result *result, int size)
+{
+    if (holder->precision > size)
+    {
+    if (holder->precision >= holder->field_width && holder->precision > size)
+    {
+        result->zeros = holder->precision - size;
+    }
+    }
+
+}
+/*
+** the d specifier
+*/
+
+int intrepert(char *fstr, va_list alist, int number)
+{
+    t_format *holder;
+    t_result *result;
+    char *str;
+
+    str = ft_itoa(number);
+    holder = get_data(fstr, alist);
+    result = result_init();
+    spaces_calculator(holder, result, ft_strlen(str));
+    printf("%d\n%d\n%d", result->zeros, result->spaces);
+    return (0);
+}
+void ft_printf(char *str, ...)
+{
+    va_list ab;
+    va_start(ab, str);
+    intrepert(str, ab, 6666);
+    va_end(ab);
+}
+
+int main()
+{
+    //t_printf("%.6d");
+    printf("%.6d", 6666);
+    return (0);
+}
