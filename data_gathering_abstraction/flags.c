@@ -55,6 +55,7 @@ char specifier_extractor(char *s)
 t_format *format_init(void)
 {
 	t_format *format;
+	
 	if (!(format = malloc(sizeof(t_format))))
 		return (NULL);
 	format->specifier = '0';
@@ -67,8 +68,12 @@ t_format *format_init(void)
 
 	return (format);
 }
+
 void flags_filler(char *str, t_format *format)
 {
+	str++;
+	if (*str == '0')
+		format->zero = 1;
 	while (*str)
 	{
 		if (*str == '-')
@@ -77,9 +82,7 @@ void flags_filler(char *str, t_format *format)
 			format->plus += 1;
 		else if (*str == '#')
 			format->hashtag += 1;
-		else if (*str == '0')
-			format->zero += 1;
-		str++;
+				str++;
 	}
 }
 
