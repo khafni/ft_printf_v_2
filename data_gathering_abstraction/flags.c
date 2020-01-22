@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
-#include "../ft_printf.h"
+#include "data_gathering.h"
 
 int ft_isdigit(int c)
 {
