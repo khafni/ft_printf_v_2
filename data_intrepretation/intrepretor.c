@@ -42,27 +42,6 @@ void spaces_calculator(t_format *holder, t_result *result, int size)
             result->spaces = holder->field_width - size;
     }
 }
-/*
-** the d specifier
-*/
-void printer(t_result *result)
-{
-    int i;
-    int j;
-
-    i = 0;
-    j = 0;
-    while (i < result->spaces)
-    {
-        ft_putchar_fd(' ', 1);
-        i++;
-    }
-    while (j < result->zeros)
-    {
-        ft_putchar_fd('0', 1);
-        j++;
-    }
-}
 int intrepert(char *fstr, va_list alist, int number)
 {
     t_format *holder;
@@ -80,25 +59,5 @@ int intrepert(char *fstr, va_list alist, int number)
     {
         result->left = 1;
     }
-    //printf("%d", holder->zero);
-    //printf("0 : %d\nspaces: %d\nmc:  %d", result->zeros, result->spaces, result->max_characters);
-    printer(result);
-    return (0);
-}
-
-
-void ft_printf(char *str, ...)
-{
-    va_list ab;
-    va_start(ab, str);
-    intrepert(str, ab, -22);
-    printf("%d", 22);
-    va_end(ab);
-}
-
-int main()
-{
-    printf("%8.6d\n", -22);
-    ft_printf("%8.6d");
     return (0);
 }
