@@ -24,3 +24,14 @@ typedef	struct
 	int 	hashtag;
 	int 	zero;
 }	t_format;
+
+/*
+**	prototypes for functions
+*/
+
+char specifier_extractor(char *s);
+t_format *format_init(void);
+void flags_filler(char *str, t_format *format);
+void field_width_getter(char *format, t_format *holder, va_list vlist);
+void precision_getter(char *format, t_format *holder, va_list vlist);
+t_format *get_data (char *f_sstr, va_list vlist);

@@ -3,39 +3,6 @@
 #include <stdlib.h>
 #include "data_gathering.h"
 
-int ft_isdigit(int c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
-}
-
-int		ft_atoi(const char *str)
-{
-	int				i;
-	unsigned long	nb;
-	int				neg;
-
-	i = 0;
-	nb = 0;
-	neg = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
-		i++;
-	if (str[i] == '-')
-		neg = -1;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while ((str[i] >= '0') && (str[i] <= '9'))
-	{
-		nb = nb * 10 + str[i] - '0';
-		if (nb > 9223372036854775807)
-			return (neg < 0 ? 0 : -1);
-		i++;
-	}
-	return (neg * nb);
-}
-
-
 char specifier_extractor(char *s)
 {
 	s++;
@@ -148,14 +115,4 @@ t_format *get_data (char *f_sstr, va_list vlist)
 	precision_getter(f_sstr, container, vlist);
 	flags_filler (f_sstr, container);
 	return (container);
-}
-void data_debugging (t_format *holder)
-{
-	printf ("specifier : %c\n", holder->specifier);
-	printf ("fw : %d\n", holder->field_width);
-	printf ("pr : %d\n", holder->precision);
-	printf ("- : %d\n", holder->minus);
-	printf ("+ : %d\n", holder->plus);
-	printf ("# : %d\n", holder->hashtag);
-	printf ("0 : %d", holder->zero);
 }

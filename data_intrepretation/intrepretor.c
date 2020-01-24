@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "../data_gathering_abstraction/flags.c"
 #include "../libft/libft.h"
 #include "intrepretor.h"
 
