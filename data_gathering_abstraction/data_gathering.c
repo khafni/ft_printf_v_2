@@ -103,6 +103,28 @@ void precision_getter(char *format, t_format *holder, va_list vlist)
 		format++;
 	}
 }
+void d_value_get(char *format, t_format *holder, va_list vlist)
+{
+	int h;
+	while (*format)
+	{
+		if (*format == '*')
+			h = va_arg(vlist, int);
+		format++;
+	}
+	holder->d_value = va_arg(vlist, int);
+}
+void s_value_get(char *format, t_format *holder, va_list vlist)
+{
+	int h;
+	while (*format)
+	{
+		if (*format == '*')
+			h = va_arg(vlist, int);
+		format++;
+	}
+	holder->s_value = ft_strdup(va_arg(vlist, char *));
+}
 /*
 ** the function to get the the data
 */
@@ -116,4 +138,23 @@ t_format *get_data (char *f_sstr, va_list vlist)
 	precision_getter(f_sstr, container, vlist);
 	flags_filler (f_sstr, container);
 	return (container);
+}
+
+int	bobo(char *str, ...)
+{
+	t_format *format;
+
+	format = format_init();
+	va_list alist;
+	va_start(alist, str);
+	s_value_get(str, format, alist);
+
+	ft_putstr_fd(format->s_value, 1);
+	return (0);
+}
+
+int main()
+{
+	bobo("%*.*d", 88, 42, "fuck");
+	return (0);
 }
