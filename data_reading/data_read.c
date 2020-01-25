@@ -10,7 +10,7 @@ int format_length (char *s)
 	s++;
 	while (*s != 'c' && *s != 's' && *s != 'p' &&
 	*s != 'd' && *s != 'i' && *s != 'u' &&
-	*s != 'x' && *s != 'X' && *s)
+	*s != 'x' && *s != 'X' && *s != '%' && *s)
 	{
 		length++;
 		s++;
@@ -18,13 +18,27 @@ int format_length (char *s)
 	return (length);
 }
 
+char *extractor(char *format)
+{
+	char *holder;
+	int l;
+
+	l = format_length(format);
+	format++;
+	holder = malloc(sizeof(char) * l);
+	ft_strlcpy(holder, format, l + 1);
+	return (holder);
+}
 void g_parser(va_list alist, char **str_ptr)
 {
     int l;
+    char *pt;
 
-
-    l = format_length(*str_ptr);
-    **str_ptr += format_length()
+    pt = extractor(*str_ptr);
+    printf("%s", pt);
+    l = format_length(*str_ptr) + 1;
+    *str_ptr += l;
+    free(pt);
 }
 void ft_printf(char *str, ...)
 {
@@ -32,22 +46,21 @@ void ft_printf(char *str, ...)
     va_start(alist, str);
     while (*str)
     {
-        if (*str = '%')
+        if (*str == '%')
         {
-                g_parser(alist, str);
+                g_parser(alist, &str);
         }
         else
         {
-            ft_putchar_fd(*str, 1);
+            //ft_putchar_fd(*str, 1);
         }
         str++;
     }
-    parser(str, alist);
     va_end(alist);
 }
 
 int main()
 {
-
+    ft_printf("%+-----!@#$####% %f233232d");
     return (0);
 }
