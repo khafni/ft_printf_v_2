@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "../libft/libft.h"
+#include "../data_gathering_abstraction/data_gathering.h"
 #include "intrepretor.h"
 
 t_result *result_init(void)
@@ -41,7 +42,7 @@ void spaces_calculator(t_format *holder, t_result *result, int size)
             result->spaces = holder->field_width - size;
     }
 }
-int intrepert(char *fstr, va_list alist, int number)
+t_result *intrepert(char *fstr, va_list alist, int number)
 {
     t_format *holder;
     t_result *result;
@@ -58,5 +59,5 @@ int intrepert(char *fstr, va_list alist, int number)
     {
         result->left = 1;
     }
-    return (0);
+    return (result);
 }

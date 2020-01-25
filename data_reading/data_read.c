@@ -33,8 +33,10 @@ void g_parser(va_list alist, char **str_ptr)
 {
     int l;
     char *pt;
+    t_result *result;
 
     pt = extractor(*str_ptr);
+    result = intrepert(*str_ptr, alist, 33);
     printf("%s", pt);
     l = format_length(*str_ptr) + 1;
     *str_ptr += l;
@@ -61,6 +63,6 @@ void ft_printf(char *str, ...)
 
 int main()
 {
-    ft_printf("%+-----!@#$####% %f233232d");
+    ft_printf("%f233232d");
     return (0);
 }

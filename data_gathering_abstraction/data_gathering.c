@@ -2,6 +2,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include "data_gathering.h"
+#include "../libft/libft.h"
 
 char specifier_extractor(char *s)
 {
