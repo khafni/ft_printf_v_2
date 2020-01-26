@@ -59,5 +59,6 @@ t_result *intrepert(char *fstr, va_list alist)
     zeros_calculator(holder, result, ft_strlen(str));
     if (holder->minus)
         result->left = 1;
+    result->v
     return (result);
 }

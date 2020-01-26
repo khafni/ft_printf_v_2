@@ -105,18 +105,13 @@ void precision_getter(char *format, t_format *holder, va_list vlist)
 void	value_get(char *format, t_format *holder, va_list vlist)
 {
 	int h;
-	while (*format)
-	{
-		if (*format == '*')
-			h = va_arg(vlist, int);
-		format++;
-	}
+	h = 0;
 	if (holder->specifier != '%' && holder->specifier != '@')
 	{
 		if (holder->specifier == 's' || holder->specifier == 'c')
 			holder->value = ft_strdup(va_arg(vlist, char *));
 		else
-			holder->value = ft_itoi(va_arg(vlist, int));
+			holder->value = ft_itoa(va_arg(vlist, int));
 	}
 }
 /*
@@ -142,12 +137,17 @@ void debugger(char *str, ...)
 	t_format *holder;
 
 	va_start(alist, str);
-	holder = get_data(str, vlist);
-	printf("s : %c \n fw : %d \n pr : %d \n mn: %d \n 0 : %d \n value : %s", holder->specifier, holder->field_width, holder->precision, holder->minus, holder->zero, holder->value);
+	holder = get_data(str, alist);
+	ft_putchar_fd(holder->specifier, 1);
+	ft_putchar_fd('\n', 1);
+	ft_putnbr_fd(holder->field_width ,1);
+	ft_putchar_fd('\n', 1);
+	ft_putnbr_fd(holder->precision ,1);
+	ft_putchar_fd('\n', 1);
+	ft_putnbr_fd(holder->minus ,1);
+	ft_putchar_fd('\n', 1);
+	ft_putnbr_fd(holder->zero ,1);
+	ft_putchar_fd('\n', 1);
+	ft_putstr_fd(holder->value, 1);
 	va_end(alist);
-}
-int main()
-{
-	bobo("%*.*d", 88, 42, "fuck");
-	return (0);
 }
