@@ -23,8 +23,7 @@ typedef	struct
 	int 	plus;
 	int 	hashtag;
 	int 	zero;
-	int		d_value;
-	char	*s_value;
+	char	*value;
 }	t_format;
 
 /*

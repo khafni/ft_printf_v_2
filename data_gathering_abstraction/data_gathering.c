@@ -33,7 +33,7 @@ t_format *format_init(void)
 	format->plus = 0;
 	format->hashtag = 0;
 	format->zero = 0;
-
+	format->value = NULL;
 	return (format);
 }
 
@@ -71,7 +71,6 @@ void field_width_getter(char *format, t_format *holder, va_list vlist)
 		}
 		else if (*format == '*')
 		{
-			printf("greger\n");
 			holder->field_width = va_arg(vlist, int);
 			break ;
 		}
@@ -103,7 +102,7 @@ void precision_getter(char *format, t_format *holder, va_list vlist)
 		format++;
 	}
 }
-void d_value_get(char *format, t_format *holder, va_list vlist)
+void	value_get(char *format, t_format *holder, va_list vlist)
 {
 	int h;
 	while (*format)
@@ -112,18 +111,13 @@ void d_value_get(char *format, t_format *holder, va_list vlist)
 			h = va_arg(vlist, int);
 		format++;
 	}
-	holder->d_value = va_arg(vlist, int);
-}
-void s_value_get(char *format, t_format *holder, va_list vlist)
-{
-	int h;
-	while (*format)
+	if (holder->specifier != '%' && holder->specifier != '@')
 	{
-		if (*format == '*')
-			h = va_arg(vlist, int);
-		format++;
+		if (holder->specifier == 's' || holder->specifier == 'c')
+			holder->value = ft_strdup(va_arg(vlist, char *));
+		else
+			holder->value = ft_itoi(va_arg(vlist, int));
 	}
-	holder->s_value = ft_strdup(va_arg(vlist, char *));
 }
 /*
 ** the function to get the the data
@@ -137,22 +131,21 @@ t_format *get_data (char *f_sstr, va_list vlist)
 	field_width_getter(f_sstr, container, vlist);
 	precision_getter(f_sstr, container, vlist);
 	flags_filler (f_sstr, container);
+	value_get(f_sstr, container, vlist);
+
 	return (container);
 }
 
-int	bobo(char *str, ...)
+void debugger(char *str, ...)
 {
-	t_format *format;
-
-	format = format_init();
 	va_list alist;
+	t_format *holder;
+
 	va_start(alist, str);
-	s_value_get(str, format, alist);
-
-	ft_putstr_fd(format->s_value, 1);
-	return (0);
+	holder = get_data(str, vlist);
+	printf("s : %c \n fw : %d \n pr : %d \n mn: %d \n 0 : %d \n value : %s", holder->specifier, holder->field_width, holder->precision, holder->minus, holder->zero, holder->value);
+	va_end(alist);
 }
-
 int main()
 {
 	bobo("%*.*d", 88, 42, "fuck");

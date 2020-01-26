@@ -14,6 +14,8 @@ t_result *result_init(void)
     result->zeros = 0;
     result->minus = 0;
     result->left = 0;
+    result->d_value = 0;
+    result->s_value = NULL;
     return (result);
 }
 
@@ -42,7 +44,7 @@ void spaces_calculator(t_format *holder, t_result *result, int size)
             result->spaces = holder->field_width - size;
     }
 }
-t_result *intrepert(char *fstr, va_list alist, int number)
+t_result *intrepert(char *fstr, va_list alist)
 {
     t_format *holder;
     t_result *result;
@@ -56,8 +58,6 @@ t_result *intrepert(char *fstr, va_list alist, int number)
     spaces_calculator(holder, result, ft_strlen(str));
     zeros_calculator(holder, result, ft_strlen(str));
     if (holder->minus)
-    {
         result->left = 1;
-    }
     return (result);
 }

@@ -5,6 +5,8 @@ typedef struct
     int zeros;
     int minus;
     int left;
+    int d_value;
+    char *s_value;
 } t_result;
 
 /*

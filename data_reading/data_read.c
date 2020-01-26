@@ -29,6 +29,17 @@ char *extractor(char *format)
 	ft_strlcpy(holder, format, l + 1);
 	return (holder);
 }
+void print_result(t_result *result)
+{
+    int i;
+
+    i = 0;
+    while (i < result->spaces)
+    {
+        ft_putchar_fd(' ', 1);
+        i++;
+    }
+}
 void g_parser(va_list alist, char **str_ptr)
 {
     int l;
@@ -37,7 +48,7 @@ void g_parser(va_list alist, char **str_ptr)
 
     pt = extractor(*str_ptr);
     result = intrepert(*str_ptr, alist, 33);
-    printf("%s", pt);
+    print_result(result);
     l = format_length(*str_ptr) + 1;
     *str_ptr += l;
     free(pt);
@@ -63,6 +74,6 @@ void ft_printf(char *str, ...)
 
 int main()
 {
-    ft_printf("%f233232d");
+    ft_printf("%f2d");
     return (0);
 }
