@@ -7,7 +7,7 @@ t_result *result_init(void)
 {
     t_result *result;
 
-    if (!malloc(sizeof(t_result)))
+    if (!(result = malloc(sizeof(t_result))))
         return (NULL);
     result->spaces = 0;
     result->max_characters = -1;
@@ -60,15 +60,30 @@ t_result *intrepert(char *fstr, va_list alist)
 
 void bobo(char *str, ...)
 {
-    t_result *r;
     va_list alist;
+    t_result *r;
     
     va_start(alist, str);
     r = intrepert(str, alist);
     va_end(alist);
 }
-int main()
+void r_debugger(char *str, ...)
 {
-    bobo("%---d", 444);
-    return (0);
+	va_list alist;
+	t_result *holder;
+
+	va_start(alist, str);
+	holder = intrepert(str, alist);
+	ft_putnbr_fd(holder->spaces, 1);
+	ft_putchar_fd('\n', 1);
+	ft_putnbr_fd(holder->max_characters ,1);
+	ft_putchar_fd('\n', 1);
+	ft_putnbr_fd(holder->zeros ,1);
+	ft_putchar_fd('\n', 1);
+	ft_putnbr_fd(holder->minus ,1);
+	ft_putchar_fd('\n', 1);
+	ft_putnbr_fd(holder->left ,1);
+	ft_putchar_fd('\n', 1);
+	ft_putstr_fd(holder->value, 1);
+	va_end(alist);
 }

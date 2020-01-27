@@ -152,3 +152,9 @@ void debugger(char *str, ...)
 	ft_putstr_fd(holder->value, 1);
 	va_end(alist);
 }
+
+/*int main()
+{
+	debugger("%------d", 42);
+	return (0);
+}*/

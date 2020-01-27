@@ -39,6 +39,13 @@ void print_result(t_result *result)
         ft_putchar_fd(' ', 1);
         i++;
     }
+    while (i < result->zeros)
+    {
+        ft_putchar_fd('0', 1);
+        i++;
+    }
+    i = 0;
+    ft_putstr_fd(result->value, 1);
 }
 void g_parser(va_list alist, char **str_ptr)
 {
@@ -47,7 +54,7 @@ void g_parser(va_list alist, char **str_ptr)
     t_result *result;
 
     pt = extractor(*str_ptr);
-    result = intrepert(*str_ptr, alist, 33);
+    result = intrepert(*str_ptr, alist);
     print_result(result);
     l = format_length(*str_ptr) + 1;
     *str_ptr += l;
@@ -70,4 +77,10 @@ void ft_printf(char *str, ...)
         str++;
     }
     va_end(alist);
+}
+int main()
+{
+    printf("%6.7d\n", 4);
+    ft_printf("%6.7d", 4);
+    return (0);
 }
