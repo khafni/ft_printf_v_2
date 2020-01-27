@@ -80,7 +80,7 @@ void ft_printf(char *str, ...)
 }
 int main()
 {
-    printf("%6.7d\n", 4);
-    ft_printf("%6.7d", 4);
+    printf("%.7d\n", 4);
+    ft_printf("%.7d", 4);
     return (0);
 }
