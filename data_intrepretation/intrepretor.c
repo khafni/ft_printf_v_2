@@ -50,11 +50,11 @@ t_result *intrepert(char *fstr, va_list alist)
 
     holder = get_data(fstr, alist);
     result = result_init();
-    spaces_calculator(holder, result, ft_strlen(fstr));
-    zeros_calculator(holder, result, ft_strlen(fstr));
+    result->value = ft_strdup(holder->value);
+    spaces_calculator(holder, result, ft_strlen(result->value));
+    zeros_calculator(holder, result, ft_strlen(result->value));
     if (holder->minus)
         result->left = 1;
-    result->value = ft_strdup(holder->value);
     return (result);
 }
 
