@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
-#include "data_gathering.h"
 #include "../libft/libft.h"
+#include "data_gathering.h"
+
 
 char specifier_extractor(char *s)
 {

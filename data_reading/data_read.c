@@ -71,9 +71,3 @@ void ft_printf(char *str, ...)
     }
     va_end(alist);
 }
-
-int main()
-{
-    ft_printf("%f2d");
-    return (0);
-}

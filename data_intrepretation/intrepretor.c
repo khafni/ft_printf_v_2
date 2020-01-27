@@ -14,8 +14,7 @@ t_result *result_init(void)
     result->zeros = 0;
     result->minus = 0;
     result->left = 0;
-    result->d_value = 0;
-    result->s_value = NULL;
+    result->value = NULL;
     return (result);
 }
 
@@ -48,17 +47,28 @@ t_result *intrepert(char *fstr, va_list alist)
 {
     t_format *holder;
     t_result *result;
-    char *str;
 
-    if (number < 0)
-        result->minus = 1;
-    str = ft_itoa(number);
     holder = get_data(fstr, alist);
     result = result_init();
-    spaces_calculator(holder, result, ft_strlen(str));
-    zeros_calculator(holder, result, ft_strlen(str));
+    spaces_calculator(holder, result, ft_strlen(fstr));
+    zeros_calculator(holder, result, ft_strlen(fstr));
     if (holder->minus)
         result->left = 1;
-    result->v
+    result->value = ft_strdup(holder->value);
     return (result);
+}
+
+void bobo(char *str, ...)
+{
+    t_result *r;
+    va_list alist;
+    
+    va_start(alist, str);
+    r = intrepert(str, alist);
+    va_end(alist);
+}
+int main()
+{
+    bobo("%---d", 444);
+    return (0);
 }
