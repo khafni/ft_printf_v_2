@@ -13,7 +13,7 @@ t_result *result_init(void)
     result->max_characters = -1;
     result->zeros = 0;
     result->minus = 0;
-    result->left = 0;
+    result->neg = 0;
     result->value = NULL;
     return (result);
 }
@@ -25,7 +25,9 @@ void    result_destroy(t_result *result)
 }
 
 void zeros_calculator(t_format *holder, t_result *result, int size)
-{
+{    
+    if (result->neg && result->minus)
+        size--;
     if (holder->precision > size && holder->precision)
         result->zeros = holder->precision - size;
     else if (!holder->precision && holder->zero)
@@ -37,8 +39,6 @@ void zeros_calculator(t_format *holder, t_result *result, int size)
 
 void spaces_calculator(t_format *holder, t_result *result, int size)
 {
-    if (holder->minus)
-        result->minus = 1;
     if (holder->field_width > size && holder->field_width)
     {
         if (!holder->precision && !holder->zero)
@@ -56,11 +56,13 @@ t_result *intrepert(char *fstr, va_list alist)
 
     holder = get_data(fstr, alist);
     result = result_init();
+    if (holder->minus)
+        result->minus = 1;
+    if (ft_atoi(holder->value) < 0)
+        result->neg = 1;
     result->value = ft_strdup(holder->value);
     spaces_calculator(holder, result, ft_strlen(result->value));
     zeros_calculator(holder, result, ft_strlen(result->value));
-    if (holder->minus)
-        result->left = 1;
     data_destroy(holder);
     return (result);
 }
@@ -89,7 +91,7 @@ void r_debugger(char *str, ...)
 	ft_putchar_fd('\n', 1);
 	ft_putnbr_fd(holder->minus ,1);
 	ft_putchar_fd('\n', 1);
-	ft_putnbr_fd(holder->left ,1);
+	ft_putnbr_fd(holder->neg ,1);
 	ft_putchar_fd('\n', 1);
 	ft_putstr_fd(holder->value, 1);
 	va_end(alist);

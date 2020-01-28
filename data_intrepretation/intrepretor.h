@@ -4,7 +4,7 @@ typedef struct
     int max_characters;
     int zeros;
     int minus;
-    int left;
+    int neg;
     char *value;
 } t_result;
 

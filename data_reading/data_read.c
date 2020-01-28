@@ -29,7 +29,7 @@ char *extractor(char *format)
 	ft_strlcpy(holder, format, l + 1);
 	return (holder);
 }
-void print_result(t_result *result)
+void p_spaces(t_result *result)
 {
     int i;
 
@@ -39,13 +39,35 @@ void print_result(t_result *result)
         ft_putchar_fd(' ', 1);
         i++;
     }
+}
+
+void p_zeros(t_result *result)
+{
+    int i;
+
     i = 0;
     while (i < result->zeros)
     {
         ft_putchar_fd('0', 1);
         i++;
     }
-    ft_putstr_fd(result->value, 1);
+}
+
+void print_result(t_result *result)
+{
+    if (result->neg)
+    {
+        p_zeros(result);
+        ft_putstr_fd(result->value, 1);
+        p_spaces(result);
+    }
+    else
+    {
+        p_spaces(result);
+        p_zeros(result);
+        ft_putstr_fd(result->value, 1);
+    }
+    
 }
 void g_parser(va_list alist, char **str_ptr)
 {
@@ -81,8 +103,8 @@ void ft_printf(char *str, ...)
 }
 
 int main()
-{
-    printf("%-14.2d", 4);
-    //ft_printf("%14.2d\n", 4);
+{    
+    //printf("%-3.2d\n", 4);
+    printf("%-.2d", -4);
     return (0);
 }
