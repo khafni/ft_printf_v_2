@@ -18,6 +18,12 @@ t_result *result_init(void)
     return (result);
 }
 
+void    result_destroy(t_result *result)
+{
+    free(result->value);
+    free(result);
+}
+
 void zeros_calculator(t_format *holder, t_result *result, int size)
 {
     if (holder->precision > size && holder->precision)
@@ -55,6 +61,7 @@ t_result *intrepert(char *fstr, va_list alist)
     zeros_calculator(holder, result, ft_strlen(result->value));
     if (holder->minus)
         result->left = 1;
+    data_destroy(holder);
     return (result);
 }
 
@@ -87,3 +94,9 @@ void r_debugger(char *str, ...)
 	ft_putstr_fd(holder->value, 1);
 	va_end(alist);
 }
+/*
+int main()
+{
+    r_debugger("%14.7d");
+    return (0);
+}*/

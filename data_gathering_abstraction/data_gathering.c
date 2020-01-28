@@ -21,7 +21,7 @@ char specifier_extractor(char *s)
 	return ('@');
 }
 
-t_format *format_init(void)
+t_format *data_init(void)
 {
 	t_format *format;
 	
@@ -36,6 +36,12 @@ t_format *format_init(void)
 	format->zero = 0;
 	format->value = NULL;
 	return (format);
+}
+
+void data_destroy(t_format *holder)
+{
+	free(holder->value);
+	free(holder);
 }
 
 void flags_filler(char *str, t_format *format)
@@ -122,7 +128,7 @@ t_format *get_data (char *f_sstr, va_list vlist)
 {
 	t_format *container;
 
-	container = format_init();
+	container = data_init();
 	container->specifier = specifier_extractor(f_sstr);
 	field_width_getter(f_sstr, container, vlist);
 	precision_getter(f_sstr, container, vlist);
@@ -152,9 +158,3 @@ void debugger(char *str, ...)
 	ft_putstr_fd(holder->value, 1);
 	va_end(alist);
 }
-
-/*int main()
-{
-	debugger("%------d", 42);
-	return (0);
-}*/

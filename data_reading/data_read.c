@@ -39,12 +39,12 @@ void print_result(t_result *result)
         ft_putchar_fd(' ', 1);
         i++;
     }
+    i = 0;
     while (i < result->zeros)
     {
         ft_putchar_fd('0', 1);
         i++;
     }
-    i = 0;
     ft_putstr_fd(result->value, 1);
 }
 void g_parser(va_list alist, char **str_ptr)
@@ -59,6 +59,7 @@ void g_parser(va_list alist, char **str_ptr)
     l = format_length(*str_ptr) + 1;
     *str_ptr += l;
     free(pt);
+    result_destroy(result);
 }
 void ft_printf(char *str, ...)
 {
@@ -72,15 +73,16 @@ void ft_printf(char *str, ...)
         }
         else
         {
-            //ft_putchar_fd(*str, 1);
+            ft_putchar_fd(*str, 1);
         }
         str++;
     }
     va_end(alist);
 }
+
 int main()
 {
-    printf("%.7d\n", 4);
-    ft_printf("%.7d", 4);
+    printf("%-14.2d", 4);
+    //ft_printf("%14.2d\n", 4);
     return (0);
 }
