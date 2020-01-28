@@ -26,7 +26,7 @@ void    result_destroy(t_result *result)
 
 void zeros_calculator(t_format *holder, t_result *result, int size)
 {    
-    if (result->neg && result->minus)
+    if (result->neg)
         size--;
     if (holder->precision > size && holder->precision)
         result->zeros = holder->precision - size;

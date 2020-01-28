@@ -53,12 +53,36 @@ void p_zeros(t_result *result)
     }
 }
 
-void print_result(t_result *result)
+void    p_num(t_result *result)
 {
     if (result->neg)
     {
-        p_zeros(result);
+        ft_putnbr_fd(-1 * ft_atoi(result->value), 1);
+    }
+    else
         ft_putstr_fd(result->value, 1);
+}
+
+void print_result(t_result *result)
+{
+    if (result->neg && result->minus)
+    {
+        ft_putchar_fd('-', 1);
+        p_zeros(result);
+        p_num(result);
+        p_spaces(result);
+    }
+    else if (result->neg && !result->minus)
+    {
+        p_spaces(result);
+        ft_putchar_fd('-', 1);
+        p_zeros(result);
+        p_num(result);
+    }
+    else if (!result->neg && result->minus)
+    {
+        p_zeros(result);
+        p_num(result);
         p_spaces(result);
     }
     else
@@ -67,7 +91,6 @@ void print_result(t_result *result)
         p_zeros(result);
         ft_putstr_fd(result->value, 1);
     }
-    
 }
 void g_parser(va_list alist, char **str_ptr)
 {
@@ -104,7 +127,7 @@ void ft_printf(char *str, ...)
 
 int main()
 {    
-    //printf("%-3.2d\n", 4);
-    printf("%-.2d", -4);
+    ft_printf("%10.9de\n", -4);
+    ft_printf("%10.9de", -4);
     return (0);
 }
