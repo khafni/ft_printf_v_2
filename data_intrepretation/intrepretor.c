@@ -60,6 +60,11 @@ t_result *intrepert(char *fstr, va_list alist)
         result->minus = 1;
     if (ft_atoi(holder->value) < 0)
         result->neg = 1;
+    if (holder->field_width < 0)
+    {
+        holder->field_width *= -1;
+        result->minus = 1;
+    }
     result->value = ft_strdup(holder->value);
     spaces_calculator(holder, result, ft_strlen(result->value));
     zeros_calculator(holder, result, ft_strlen(result->value));

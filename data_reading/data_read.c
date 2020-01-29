@@ -106,7 +106,7 @@ void g_parser(va_list alist, char **str_ptr)
     free(pt);
     result_destroy(result);
 }
-void ft_printf(char *str, ...)
+int ft_printf(char *str, ...)
 {
     va_list alist;
     va_start(alist, str);
@@ -123,11 +123,12 @@ void ft_printf(char *str, ...)
         str++;
     }
     va_end(alist);
+    return (0);
 }
-
+/*
 int main()
 {    
     ft_printf("%10.9de\n", -4);
     ft_printf("%10.9de", -4);
     return (0);
-}
+}*/

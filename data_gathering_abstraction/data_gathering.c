@@ -109,7 +109,7 @@ void precision_getter(char *format, t_format *holder, va_list vlist)
 		format++;
 	}
 }
-void	value_get(char *format, t_format *holder, va_list vlist)
+void	value_get(t_format *holder, va_list vlist)
 {
 	int h;
 	h = 0;
@@ -133,7 +133,7 @@ t_format *get_data (char *f_sstr, va_list vlist)
 	field_width_getter(f_sstr, container, vlist);
 	precision_getter(f_sstr, container, vlist);
 	flags_filler (f_sstr, container);
-	value_get(f_sstr, container, vlist);
+	value_get(container, vlist);
 
 	return (container);
 }
@@ -158,3 +158,10 @@ void debugger(char *str, ...)
 	ft_putstr_fd(holder->value, 1);
 	va_end(alist);
 }
+/*
+int main()
+{
+    debugger("%*d", -1, -5);
+    return (0);
+}
+*/
