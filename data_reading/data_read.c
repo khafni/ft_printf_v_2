@@ -55,9 +55,10 @@ void p_zeros(t_result *result)
 
 void    p_num(t_result *result)
 {
-    int n;
+    //int n;
 
-    n = -1 * ft_atoi(result->value);
+    //n = -1 * ft_atoi(result->value);
+    ft_putnbr_fd(-100 , 1);
     if (!ft_atoi(result->value) && !result->data->precision)
     {
         return ;
@@ -66,12 +67,12 @@ void    p_num(t_result *result)
     {
         if (result->neg)
         {
-            ft_putnbr_fd(n, 1);
+            return ;
+            //ft_putnbr_fd(n, 1);
         }
         else
             ft_putstr_fd(result->value, 1);
     }
-    printf("\n****%d****\n", n);
 }
 
 void print_result(t_result *result)

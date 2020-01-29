@@ -105,8 +105,6 @@ void precision_getter(char *format, t_format *holder, va_list vlist)
 }
 void	value_get(t_format *holder, va_list vlist)
 {
-	int h;
-	h = 0;
 	if (holder->specifier != '%' && holder->specifier != '@')
 	{
 		if (holder->specifier == 's' || holder->specifier == 'c')

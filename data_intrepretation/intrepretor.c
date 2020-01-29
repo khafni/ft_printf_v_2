@@ -74,7 +74,7 @@ t_result *intrepert(char *fstr, va_list alist)
     return (result);
 }
 
-void bobo(char *str, ...)
+/*void bobo(char *str, ...)
 {
     va_list alist;
     t_result *r;
@@ -82,7 +82,7 @@ void bobo(char *str, ...)
     va_start(alist, str);
     r = intrepert(str, alist);
     va_end(alist);
-}
+}*/
 void r_debugger(char *str, ...)
 {
 	va_list alist;
