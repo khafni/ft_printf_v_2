@@ -6,6 +6,7 @@ typedef struct
     int minus;
     int neg;
     char *value;
+    t_format    *data;
 } t_result;
 
 /*

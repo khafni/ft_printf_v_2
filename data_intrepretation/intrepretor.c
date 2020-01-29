@@ -21,11 +21,13 @@ t_result *result_init(void)
 void    result_destroy(t_result *result)
 {
     free(result->value);
+    free(result->data->value);
+    free(result->data);
     free(result);
 }
 
 void zeros_calculator(t_format *holder, t_result *result, int size)
-{    
+{
     if (result->neg)
         size--;
     if (holder->precision > size && holder->precision)
@@ -68,7 +70,7 @@ t_result *intrepert(char *fstr, va_list alist)
     result->value = ft_strdup(holder->value);
     spaces_calculator(holder, result, ft_strlen(result->value));
     zeros_calculator(holder, result, ft_strlen(result->value));
-    data_destroy(holder);
+    result->data = holder;
     return (result);
 }
 

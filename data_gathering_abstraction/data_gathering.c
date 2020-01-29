@@ -38,12 +38,6 @@ t_format *data_init(void)
 	return (format);
 }
 
-void data_destroy(t_format *holder)
-{
-	free(holder->value);
-	free(holder);
-}
-
 void flags_filler(char *str, t_format *format)
 {
 	str++;

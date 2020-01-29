@@ -55,12 +55,23 @@ void p_zeros(t_result *result)
 
 void    p_num(t_result *result)
 {
-    if (result->neg)
+    int n;
+
+    n = -1 * ft_atoi(result->value);
+    if (!ft_atoi(result->value) && !result->data->precision)
     {
-        ft_putnbr_fd(-1 * ft_atoi(result->value), 1);
+        return ;
     }
     else
-        ft_putstr_fd(result->value, 1);
+    {
+        if (result->neg)
+        {
+            ft_putnbr_fd(n, 1);
+        }
+        else
+            ft_putstr_fd(result->value, 1);
+    }
+    printf("\n****%d****\n", n);
 }
 
 void print_result(t_result *result)
@@ -89,7 +100,7 @@ void print_result(t_result *result)
     {
         p_spaces(result);
         p_zeros(result);
-        ft_putstr_fd(result->value, 1);
+        p_num(result);
     }
 }
 void g_parser(va_list alist, char **str_ptr)
