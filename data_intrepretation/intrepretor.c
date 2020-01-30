@@ -25,9 +25,31 @@ void    result_destroy(t_result *result)
     free(result->data);
     free(result);
 }
+void zeros_calculator_normal (t_format *holder, t_result *result, int size)
+{
+
+}
+
+void zeros_calculator_zero (t_format *holder, t_result *result, int size)
+{
+
+}
+
+void zeros_calculator_neg (t_format *holder, t_result *result, int size)
+{
+
+}
 
 void zeros_calculator(t_format *holder, t_result *result, int size)
 {
+    if (!result->neg && !(holder->flags_existence & FW_ZERO) 
+    && (ft_atoi(holder->value) > 0))
+        zeros_calculator_normal (holder, result, size);
+    else if (result->neg)
+        zeros_calculator_neg (holder, result, size);
+    else if ((holder->flags_existence & FW_ZERO) && !ft_atoi(holder->value))
+        zeros_calculator_zero (holder, result, size);
+    /*
     if (result->neg)
         size--;
     if ((holder->flags_existence & PRECISION) && !holder->precision)
@@ -40,6 +62,7 @@ void zeros_calculator(t_format *holder, t_result *result, int size)
         if (holder->field_width > size)
             result->zeros = holder->field_width - size;
     }
+    */
 }
 
 void spaces_calculator(t_format *holder, t_result *result, int size)
@@ -59,6 +82,10 @@ void spaces_calculator(t_format *holder, t_result *result, int size)
             result->spaces = holder->field_width - pr_extra;
         else if (holder->precision && holder->precision <= size)
             result->spaces = holder->field_width - size;
+    }
+    else if (holder->field_width > size && holder->field_width && holder->zero)
+    {
+        result->spaces = holder->field_width - pr_extra;
     }
 }
 t_result *intrepert(char *fstr, va_list alist)

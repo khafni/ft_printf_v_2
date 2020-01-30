@@ -21,6 +21,14 @@ char specifier_extractor(char *s)
 	return ('@');
 }
 
+void existence_analyser (char *str, t_format *holder)
+{
+	str++;
+	if (*str == '0')
+		holder->flags_existence |= FW_ZERO;
+	while (*str)
+}
+
 t_format *data_init(void)
 {
 	t_format *format;

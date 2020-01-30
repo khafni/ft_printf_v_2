@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-#define ZEROPAD 1
+#define FW_ZERO 1
 #define FIELD_WIDTH 2
 #define PLUS 4
 #define SPACE 8
