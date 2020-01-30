@@ -35,6 +35,7 @@ t_format *data_init(void)
 	format->hashtag = 0;
 	format->zero = 0;
 	format->value = NULL;
+	format->flags_existence = 0;
 	return (format);
 }
 
@@ -64,7 +65,14 @@ void field_width_getter(char *format, t_format *holder, va_list vlist)
 	while (*format && *format != '.')
 	{
 		while (*format == '0')
+		{
+			if (*(format + 1) == '.')
+				{
+					holder->field_width = 0;
+					break ;
+				}
 			format++;
+		}
 		if (ft_isdigit(*format))
 		{
 			holder->field_width = ft_atoi(format);
@@ -72,6 +80,7 @@ void field_width_getter(char *format, t_format *holder, va_list vlist)
 		}
 		else if (*format == '*')
 		{
+			holder->flags_existence |= FS;
 			holder->field_width = va_arg(vlist, int);
 			break ;
 		}
@@ -88,6 +97,7 @@ void precision_getter(char *format, t_format *holder, va_list vlist)
 	{
 		if (*format == '.')
 		{
+			holder->flags_existence |= PRECISION;
 			format++;
 			if (ft_isdigit(*format))
 			{
@@ -96,6 +106,7 @@ void precision_getter(char *format, t_format *holder, va_list vlist)
 			}
 			else if (*format == '*')
 			{
+				holder->flags_existence |= SS;
 				holder->precision = va_arg(vlist, int);
 				break ;
 			}
@@ -153,7 +164,7 @@ void debugger(char *str, ...)
 /*
 int main()
 {
-    debugger("%*d", -1, -5);
+    debugger("%0.*d", 6, 5);
     return (0);
 }
 */
