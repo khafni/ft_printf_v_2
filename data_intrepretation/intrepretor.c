@@ -25,9 +25,19 @@ void    result_destroy(t_result *result)
     free(result->data);
     free(result);
 }
+
 void zeros_calculator_normal (t_format *holder, t_result *result, int size)
 {
-
+    if (holder->precision > 0 && !(holder->flags_existence & FW_ZERO))
+        result->zeros = holder->precision - size;
+    if ((holder->precision > 0) && (holder->flags_existence & FW_ZERO)
+    && holder->field_width > 0)
+        result->zeros = holder->precision - size;
+    else if (holder->precision < 0 && (holder->flags_existence & FW_ZERO)
+    && holder->field_width > 0)
+    {
+        result->zeros = holder->field_width - size;
+    }
 }
 
 void zeros_calculator_zero (t_format *holder, t_result *result, int size)
@@ -37,18 +47,20 @@ void zeros_calculator_zero (t_format *holder, t_result *result, int size)
 
 void zeros_calculator_neg (t_format *holder, t_result *result, int size)
 {
-
+    size--;
+    zeros_calculator_normal(holder, result, size);
 }
-
 void zeros_calculator(t_format *holder, t_result *result, int size)
 {
-    if (!result->neg && !(holder->flags_existence & FW_ZERO) 
-    && (ft_atoi(holder->value) > 0))
+    if (!result->neg && (ft_atoi(holder->value) > 0))
         zeros_calculator_normal (holder, result, size);
     else if (result->neg)
         zeros_calculator_neg (holder, result, size);
+    
     else if ((holder->flags_existence & FW_ZERO) && !ft_atoi(holder->value))
         zeros_calculator_zero (holder, result, size);
+
+
     /*
     if (result->neg)
         size--;
@@ -102,7 +114,7 @@ t_result *intrepert(char *fstr, va_list alist)
         result->neg = 1;
     if (holder->field_width < 0)
     {
-        holder->field_width *= -1;
+        //holder->field_width *= -1;
         result->minus = 1;
     }
     result->value = ft_strdup(holder->value);
@@ -145,4 +157,4 @@ int main()
 {
     r_debugger("%14.7d");
     return (0);
-}*/
+    */

@@ -24,9 +24,8 @@ char specifier_extractor(char *s)
 void existence_analyser (char *str, t_format *holder)
 {
 	str++;
-	if (*str == '0')
+	if (*str == '0' && ft_strchr("123456789.*", *(str + 1)))
 		holder->flags_existence |= FW_ZERO;
-	while (*str)
 }
 
 t_format *data_init(void)
@@ -141,6 +140,7 @@ t_format *get_data (char *f_sstr, va_list vlist)
 
 	container = data_init();
 	container->specifier = specifier_extractor(f_sstr);
+	existence_analyser(f_sstr, container);
 	field_width_getter(f_sstr, container, vlist);
 	precision_getter(f_sstr, container, vlist);
 	flags_filler (f_sstr, container);
@@ -172,7 +172,7 @@ void debugger(char *str, ...)
 /*
 int main()
 {
-    debugger("%0.*d", 6, 5);
+    debugger("%0*.*d", -6, -5, 4);
     return (0);
 }
 */
