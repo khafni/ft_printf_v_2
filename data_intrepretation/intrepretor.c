@@ -79,12 +79,15 @@ void spaces_calculator_normal (t_format *holder, t_result *result, int size)
 {
     if (holder->flags_existence & FW_ZERO)
     {
-
+        
     }
     else
     {
         if (holder->field_width < 0)
-            holder->
+        {
+            holder->minus = 1;
+            result->spaces = (holder->field_width * -1) - size;
+        }
         if (holder->precision <= 0)
             result->spaces = holder->field_width - size;        
     }
