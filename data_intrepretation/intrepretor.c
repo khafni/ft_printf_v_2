@@ -40,9 +40,24 @@ void zeros_calculator_normal (t_format *holder, t_result *result, int size)
     }
 }
 
-void zeros_calculator_zero (t_format *holder, t_result *result, int size)
+void zeros_calculator_zero (t_format *holder, t_result *result)
 {
-
+    if (!(holder->flags_existence & FW_ZERO))
+    {
+        if (holder->precision < 0)
+            result->zeros = 1;
+        else if (holder->precision > 0)
+            result->zeros = holder->precision;
+    }
+    else if (holder->flags_existence & FW_ZERO)
+    {
+        if (holder->precision < 0)
+            result->zeros = holder->field_width;
+        else
+            result->zeros = holder->precision;
+        if (holder->precision < 0 && !holder->field_width)
+            result->zeros += 1;
+    }
 }
 
 void zeros_calculator_neg (t_format *holder, t_result *result, int size)
@@ -56,25 +71,8 @@ void zeros_calculator(t_format *holder, t_result *result, int size)
         zeros_calculator_normal (holder, result, size);
     else if (result->neg)
         zeros_calculator_neg (holder, result, size);
-    
-    else if ((holder->flags_existence & FW_ZERO) && !ft_atoi(holder->value))
-        zeros_calculator_zero (holder, result, size);
-
-
-    /*
-    if (result->neg)
-        size--;
-    if ((holder->flags_existence & PRECISION) && !holder->precision)
-        return ;
-    if (holder->precision > size && holder->precision)
-        result->zeros = holder->precision - size;
-    //else if (!holder->precision && holder->zero)
-    else if (holder->zero)
-    {
-        if (holder->field_width > size)
-            result->zeros = holder->field_width - size;
-    }
-    */
+    else if (!ft_atoi(holder->value))
+        zeros_calculator_zero (holder, result);
 }
 
 void spaces_calculator(t_format *holder, t_result *result, int size)
@@ -155,6 +153,7 @@ void r_debugger(char *str, ...)
 /*
 int main()
 {
-    r_debugger("%14.7d");
+    r_debugger("%*.*da\n", 4, 4, 0);
     return (0);
-    */
+}
+*/

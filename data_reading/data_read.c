@@ -58,10 +58,14 @@ void    p_num(t_result *result)
     int n;
 
     n = -1 * ft_atoi(result->value);
+    /*
     if (!ft_atoi(result->value) && !result->data->precision)
     {
         return ;
     }
+    */
+    if (!ft_atoi(result->value))
+        return ;
     else
     {
         if (result->neg)
