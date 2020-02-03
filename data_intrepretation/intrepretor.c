@@ -75,8 +75,31 @@ void zeros_calculator(t_format *holder, t_result *result, int size)
         zeros_calculator_zero (holder, result);
 }
 
+void spaces_calculator_normal (t_format *holder, t_result *result, int size)
+{
+    
+}
+
+void spaces_calculator_neg (t_format *holder, t_result *result, int size)
+{
+
+}
+void spaces_calculator_zero (t_format *holder, t_result *result, int size)
+{
+
+}
+
+
+
 void spaces_calculator(t_format *holder, t_result *result, int size)
 {
+    if (!result->neg && (ft_atoi(holder->value) > 0))
+        spaces_calculator_normal (holder, result, size);
+    else if (result->neg)
+        spaces_calculator_neg (holder, result, size);
+    else if (!ft_atoi(holder->value))
+        spaces_calculator_zero (holder, result);
+    /*
     int pr_extra;
 
     if (!ft_atoi(result->value) && result->data->precision >= 0)
@@ -97,6 +120,7 @@ void spaces_calculator(t_format *holder, t_result *result, int size)
     {
         result->spaces = holder->field_width - pr_extra;
     }
+    */
 }
 t_result *intrepert(char *fstr, va_list alist)
 {
