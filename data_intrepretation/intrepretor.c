@@ -3,6 +3,10 @@
 #include "../data_gathering_abstraction/data_gathering.h"
 #include "intrepretor.h"
 
+void ft_abs(int *nb)
+{
+    if ()
+}
 t_result *result_init(void)
 {
     t_result *result;
@@ -83,13 +87,8 @@ void spaces_calculator_normal (t_format *holder, t_result *result, int size)
     }
     else
     {
-        if (holder->field_width < 0)
-        {
-            holder->minus = 1;
-            result->spaces = (holder->field_width * -1) - size;
-        }
-        if (holder->precision <= 0)
-            result->spaces = holder->field_width - size;        
+        if (ft_abs(holder->field_width) > ft_abs(holder->precision))
+            result->zeros = ft_abs(holder->field_width) - size;
     }
 }
 
