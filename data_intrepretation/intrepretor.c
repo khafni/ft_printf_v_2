@@ -1,12 +1,9 @@
+
 #include <stdio.h>
 #include "../libft/libft.h"
 #include "../data_gathering_abstraction/data_gathering.h"
 #include "intrepretor.h"
 
-void ft_abs(int *nb)
-{
-    if ()
-}
 t_result *result_init(void)
 {
     t_result *result;
@@ -83,34 +80,39 @@ void spaces_calculator_normal (t_format *holder, t_result *result, int size)
 {
     if (holder->flags_existence & FW_ZERO)
     {
-        
+      
     }
     else
     {
-        if (ft_abs(holder->field_width) > ft_abs(holder->precision))
-            result->zeros = ft_abs(holder->field_width) - size;
+      if (holder->precision > 0
+      && ft_abs(holder->field_width) > holder->precision)
+	result->spaces = ft_abs(holder->field_width) - holder->precision;
+      else if (holder->precision <= 0 && holder->field_width)
+      	result->spaces = ft_abs(holder->field_width) - size;
     }
 }
 
-void spaces_calculator_neg (t_format *holder, t_result *result, int size)
+/*void spaces_calculator_neg (t_format *holder, t_result *result, int size)
 {
 
 }
+
 void spaces_calculator_zero (t_format *holder, t_result *result, int size)
 {
 
 }
-
+*/
 
 
 void spaces_calculator(t_format *holder, t_result *result, int size)
 {
     if (!result->neg && (ft_atoi(holder->value) > 0))
         spaces_calculator_normal (holder, result, size);
-    else if (result->neg)
-        spaces_calculator_neg (holder, result, size);
-    else if (!ft_atoi(holder->value))
-        spaces_calculator_zero (holder, result);
+    //else if (result->neg)
+    //  spaces_calculator_neg (holder, result, size);
+    //    else if (!ft_atoi(holder->value))
+    //  spaces_calculator_zero (holder, result);
+    
     /*
     int pr_extra;
 
