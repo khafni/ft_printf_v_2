@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include "../libft/libft.h"
 #include "../data_gathering_abstraction/data_gathering.h"
@@ -29,15 +28,16 @@ void    result_destroy(t_result *result)
 
 void zeros_calculator_normal (t_format *holder, t_result *result, int size)
 {
-    if (holder->precision > 0 && !(holder->flags_existence & FW_ZERO))
-        result->zeros = holder->precision - size;
-    if ((holder->precision > 0) && (holder->flags_existence & FW_ZERO)
-    && holder->field_width > 0)
-        result->zeros = holder->precision - size;
-    else if (holder->precision < 0 && (holder->flags_existence & FW_ZERO)
-    && holder->field_width > 0)
+  if (holder->precision > 0 && !(holder->flags_existence & FW_ZERO))
+    result->zeros = holder->precision - size;
+  else if (holder->flags_existence & FW_ZERO)
     {
-        result->zeros = holder->field_width - size;
+      if ((holder->precision > 0) && holder->field_width > 0)
+	result->zeros = holder->precision - size;
+      else if ((holder->precision > 0) && holder->field_width <= 0)
+	result->zeros = holder->precision - size;
+      else if (holder->precision < 0 && holder->field_width > 0)
+	result->zeros = holder->field_width - size;
     }
 }
 
@@ -45,10 +45,10 @@ void zeros_calculator_zero (t_format *holder, t_result *result)
 {
     if (!(holder->flags_existence & FW_ZERO))
     {
-        if (holder->precision < 0)
-            result->zeros = 1;
-        else if (holder->precision > 0)
-            result->zeros = holder->precision;
+      //    if (holder->precision < 0)
+      //    result->zeros = 1;
+        if (holder->precision > 0)
+	  result->zeros = holder->precision;
     }
     else if (holder->flags_existence & FW_ZERO)
     {
@@ -56,15 +56,28 @@ void zeros_calculator_zero (t_format *holder, t_result *result)
             result->zeros = holder->field_width;
         else
             result->zeros = holder->precision;
-        if (holder->precision < 0 && !holder->field_width)
-            result->zeros += 1;
+        //if (holder->precision < 0 && !holder->field_width)
+	//   result->zeros += 1;
     }
 }
 
 void zeros_calculator_neg (t_format *holder, t_result *result, int size)
 {
-    size--;
-    zeros_calculator_normal(holder, result, size);
+  size--;
+  zeros_calculator_normal(holder, result, size);
+    /*
+  if (holder->precision > 0 && !(holder->flags_existence & FW_ZERO))
+    result->zeros = holder->precision - size;
+  else if (holder->flags_existence & FW_ZERO)
+    {
+      if ((holder->precision > 0) && holder->field_width > 0)
+	result->zeros = holder->precision - size;
+      else if ((holder->precision > 0) && holder->field_width <= 0)
+	result->zeros = holder->precision - size;
+      else if (holder->precision < 0 && holder->field_width > 0)
+	result->zeros = holder->field_width - size;
+    }
+  */
 }
 void zeros_calculator(t_format *holder, t_result *result, int size)
 {
@@ -74,14 +87,21 @@ void zeros_calculator(t_format *holder, t_result *result, int size)
         zeros_calculator_neg (holder, result, size);
     else if (!ft_atoi(holder->value))
         zeros_calculator_zero (holder, result);
+    //  printf("\n***%d***\n", result->zeros);
 }
 
 void spaces_calculator_normal (t_format *holder, t_result *result, int size)
 {
     if (holder->flags_existence & FW_ZERO)
     {
-      
-    }
+      if (holder->precision > 0
+      && ft_abs(holder->field_width) > holder->precision)
+	result->spaces = ft_abs(holder->field_width) - holder->precision;
+      else if (!holder->precision)
+	result->spaces = ft_abs(holder->field_width) - size;
+      else if (holder->precision < 0 && holder->field_width < -1)
+	result->spaces = ft_abs(holder->field_width) - size;
+	}
     else
     {
       if (holder->precision > 0
@@ -92,49 +112,64 @@ void spaces_calculator_normal (t_format *holder, t_result *result, int size)
     }
 }
 
-/*void spaces_calculator_neg (t_format *holder, t_result *result, int size)
-{
 
+void spaces_calculator_neg (t_format *holder, t_result *result, int size)
+{
+  if (holder->flags_existence & FW_ZERO)
+    {
+      if (holder->precision > 0)
+	{
+	  if (holder->precision >= size
+	  && ft_abs(holder->field_width) > holder->precision)
+	    result->spaces = ft_abs(holder->field_width) - holder->precision;
+	  else
+	    result->spaces = ft_abs(holder->field_width) - size;
+	}
+      else if (!holder->precision)
+	result->spaces = ft_abs(holder->field_width) - size;
+      else if (holder->precision < 0 && holder->field_width < -1)
+	result->spaces = ft_abs(holder->field_width) - size;
+    }
+  else
+    {
+      if (holder->precision > 0
+	  && ft_abs(holder->field_width) > holder->precision)
+	result->spaces = ft_abs(holder->field_width) - holder->precision - 1;
+      else if (holder->precision <= 0 && holder->field_width)
+      	result->spaces = ft_abs(holder->field_width) - size;
+    }  
 }
+
 
 void spaces_calculator_zero (t_format *holder, t_result *result, int size)
 {
-
+  if (holder->flags_existence & FW_ZERO)
+    {
+      if (holder->precision >= 0)
+	result->spaces = ft_abs(holder->field_width) - holder->precision;
+      else if (holder->precision < 0 && holder->field_width < -1)
+	result->spaces = ft_abs(holder->field_width) - 1;
+    }
+  else
+    {
+      if (holder->precision >= 0
+      && ft_abs(holder->field_width) >= holder->precision)
+	result->spaces = ft_abs(holder->field_width) - holder->precision;
+      else if (holder->precision < 0)
+	result->spaces = ft_abs(holder->field_width) - size;
+    }
 }
-*/
+
 
 
 void spaces_calculator(t_format *holder, t_result *result, int size)
 {
     if (!result->neg && (ft_atoi(holder->value) > 0))
         spaces_calculator_normal (holder, result, size);
-    //else if (result->neg)
-    //  spaces_calculator_neg (holder, result, size);
-    //    else if (!ft_atoi(holder->value))
-    //  spaces_calculator_zero (holder, result);
-    
-    /*
-    int pr_extra;
-
-    if (!ft_atoi(result->value) && result->data->precision >= 0)
-        size--;
-    pr_extra = holder->precision + 1;
-    pr_extra = (!result->neg) ? holder->precision : pr_extra;
-    if (holder->field_width > size && holder->field_width && !holder->zero)
-    {
-        //if (!holder->precision && !holder->zero)
-        if (!holder->precision && (holder->flags_existence & PRECISION))
-            result->spaces = holder->field_width - size;
-        else if (holder->precision && holder->precision > size)
-            result->spaces = holder->field_width - pr_extra;
-        else if (holder->precision && holder->precision <= size)
-            result->spaces = holder->field_width - size;
-    }
-    else if (holder->field_width > size && holder->field_width && holder->zero)
-    {
-        result->spaces = holder->field_width - pr_extra;
-    }
-    */
+    else if (result->neg)
+      spaces_calculator_neg (holder, result, size);
+    else if (!ft_atoi(holder->value))
+      spaces_calculator_zero (holder, result, size);
 }
 t_result *intrepert(char *fstr, va_list alist)
 {

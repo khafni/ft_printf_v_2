@@ -64,8 +64,8 @@ void    p_num(t_result *result)
         return ;
     }
     */
-    if (!ft_atoi(result->value))
-        return ;
+    if (!ft_atoi(result->value) && result->data->precision >= 0)
+      return ;
     else
     {
         if (result->neg)
