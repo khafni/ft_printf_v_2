@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include "../libft/libft.h"
 #include "../data_gathering_abstraction/data_gathering.h"
@@ -38,6 +39,8 @@ void zeros_calculator_normal (t_format *holder, t_result *result, int size)
 	result->zeros = holder->precision - size;
       else if (holder->precision < 0 && holder->field_width > 0)
 	result->zeros = holder->field_width - size;
+      else if (!holder->precision && holder->field_width > 0)
+	result->zeros = holder->field_width - size;
     }
 }
 
@@ -65,19 +68,6 @@ void zeros_calculator_neg (t_format *holder, t_result *result, int size)
 {
   size--;
   zeros_calculator_normal(holder, result, size);
-    /*
-  if (holder->precision > 0 && !(holder->flags_existence & FW_ZERO))
-    result->zeros = holder->precision - size;
-  else if (holder->flags_existence & FW_ZERO)
-    {
-      if ((holder->precision > 0) && holder->field_width > 0)
-	result->zeros = holder->precision - size;
-      else if ((holder->precision > 0) && holder->field_width <= 0)
-	result->zeros = holder->precision - size;
-      else if (holder->precision < 0 && holder->field_width > 0)
-	result->zeros = holder->field_width - size;
-    }
-  */
 }
 void zeros_calculator(t_format *holder, t_result *result, int size)
 {
@@ -97,11 +87,11 @@ void spaces_calculator_normal (t_format *holder, t_result *result, int size)
       if (holder->precision > 0
       && ft_abs(holder->field_width) > holder->precision)
 	result->spaces = ft_abs(holder->field_width) - holder->precision;
-      else if (!holder->precision)
+      else if (!holder->precision && holder->field_width < 0)
 	result->spaces = ft_abs(holder->field_width) - size;
       else if (holder->precision < 0 && holder->field_width < -1)
 	result->spaces = ft_abs(holder->field_width) - size;
-	}
+    }
     else
     {
       if (holder->precision > 0
@@ -116,21 +106,8 @@ void spaces_calculator_normal (t_format *holder, t_result *result, int size)
 void spaces_calculator_neg (t_format *holder, t_result *result, int size)
 {
   if (holder->flags_existence & FW_ZERO)
-    {
-      if (holder->precision > 0)
-	{
-	  if (holder->precision >= size
-	  && ft_abs(holder->field_width) > holder->precision)
-	    result->spaces = ft_abs(holder->field_width) - holder->precision;
-	  else
-	    result->spaces = ft_abs(holder->field_width) - size;
-	}
-      else if (!holder->precision)
-	result->spaces = ft_abs(holder->field_width) - size;
-      else if (holder->precision < 0 && holder->field_width < -1)
-	result->spaces = ft_abs(holder->field_width) - size;
-    }
-  else
+    spaces_calculator_neg_zeropad(holder, result, size);
+      else
     {
       if (holder->precision > 0
 	  && ft_abs(holder->field_width) > holder->precision)
@@ -140,7 +117,23 @@ void spaces_calculator_neg (t_format *holder, t_result *result, int size)
     }  
 }
 
-
+void spaces_calculator_neg_zeropad (t_format *holder, t_result *result, int size)
+{
+    if (holder->precision > 0 && holder->precision < size
+	&& ft_abs(holder->field_width) > size)
+      result->spaces = ft_abs(holder->field_width) - size;
+    else if (holder->precision > 0 && holder->precision >= size
+	&& ft_abs(holder->field_width) > size)
+      result->spaces = ft_abs(holder->field_width) - size - result->zeros;
+    else if (holder->precision <= 0 && holder->field_width < 0)
+    {
+      result->spaces =ft_abs(holder->field_width) - size;
+    }
+  //else if (!holder->precision)
+  //	result->spaces = ft_abs(holder->field_width) - size;
+  //  else if (holder->precision < 0 && holder->field_width < -1)
+  //	result->spaces = ft_abs(holder->field_width) - size;
+}
 void spaces_calculator_zero (t_format *holder, t_result *result, int size)
 {
   if (holder->flags_existence & FW_ZERO)
@@ -189,8 +182,8 @@ t_result *intrepert(char *fstr, va_list alist)
         result->minus = 1;
     }
     result->value = ft_strdup(holder->value);
-    spaces_calculator(holder, result, ft_strlen(result->value));
     zeros_calculator(holder, result, ft_strlen(result->value));
+    spaces_calculator(holder, result, ft_strlen(result->value));
     return (result);
 }
 

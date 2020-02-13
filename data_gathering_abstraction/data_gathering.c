@@ -148,7 +148,7 @@ t_format *get_data (char *f_sstr, va_list vlist)
 
 	return (container);
 }
-
+/*
 void debugger(char *str, ...)
 {
 	va_list alist;
@@ -169,6 +169,8 @@ void debugger(char *str, ...)
 	ft_putstr_fd(holder->value, 1);
 	va_end(alist);
 }
+*/
+
 /*
 int main()
 {
