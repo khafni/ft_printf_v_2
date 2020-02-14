@@ -42,7 +42,8 @@ void	idk_calculator (t_format *holder, t_result *result, int size)
     }
   else
     {
-      if (holder->precision < 0
+      if (holder->precision > size)
+	result->zeros = result->pr_anl;
     }
 }
 /*

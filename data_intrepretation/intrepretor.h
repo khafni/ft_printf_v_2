@@ -1,12 +1,13 @@
 typedef struct
 {
-    int spaces;
-    int max_characters;
-    int zeros;
-    int minus;
-    int neg;
-    char *value;
-    t_format    *data;
+  int spaces;
+  int max_characters;
+  int zeros;
+  int minus;
+  int neg;
+  int pr_anl;
+  char *value;
+  t_format    *data;
 } t_result;
 
 /*
