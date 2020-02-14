@@ -29,21 +29,26 @@ void    result_destroy(t_result *result)
 void	precision_handler(t_format *holder, t_result *result, int size)
 {
   if (holder->precision > 0 && holder->precision > size)
-    result->pr_anl = holder->precision - size;    
+  {
+    result->pr_anl = holder->precision - size;
+    result->zeros = holder->precision - size;
+  }
 }
 
 void	idk_calculator (t_format *holder, t_result *result, int size)
 {
   precision_handler(holder, result, size);
-  if (!(holder->flags_existence & PRECISION) || holder->precision < 0)
-    {
-      if ((holder->flags_existence | FW_ZERO) && holder->field_width > size)
-	result->zeros = holder->field_width - size;
-    }
-  else
-    {
-      if (holder->precision < 0
-    }
+  if (holder->flags_existence & FW_ZERO)
+  {
+      if ((!(holder->flags_existence & PRECISION) || holder->precision < 0)
+      && ft_abs(holder->field_width) > size)
+	      result->zeros = ft_abs(holder->field_width) - size;
+  }
+  else if (holder->flags_existence & PRECISION)
+  {
+    if (ft_abs(holder->field_width) > size)
+      result->spaces = ft_abs(holder->field_width) - result->pr_anl - size;
+  }
 }
 /*
 void zeros_calculator_normal (t_format *holder, t_result *result, int size)
