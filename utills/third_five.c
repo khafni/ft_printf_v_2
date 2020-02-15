@@ -53,3 +53,24 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putchar_fd(nb + '0', fd);
 	}
 }
+
+void	ft_putnbr_long(long n)
+{
+	long nb;
+
+	nb = n;
+	if (nb < 0)
+	{
+		ft_putchar_fd('-', 1);
+		nb = -nb;
+	}
+	if (nb >= 10)
+	{
+		ft_putnbr_fd(nb / 10, 1);
+		ft_putnbr_fd(nb % 10, 1);
+	}
+	if (nb < 10)
+	{
+		ft_putchar_fd(nb + '0', 1);
+	}
+}

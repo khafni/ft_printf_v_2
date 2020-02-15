@@ -1,5 +1,6 @@
 #include "../data_gathering_abstraction/data_gathering.h"
 #include "../data_intrepretation/intrepretor.h"
+#include "data_read.h"
 #include "../utills/utills.h"
 
 int format_length (char *s)
@@ -52,30 +53,29 @@ void p_zeros(t_result *result)
         i++;
     }
 }
-
 void    p_num(t_result *result)
 {
-  int n;
+  long n;
 
   n = -1 * ft_atoi(result->value);
-    /*
-    if (!ft_atoi(result->value) && !result->data->precision)
-    {
-        return ;
-    }
-    */
+  if (n == MIN_INTEGER)
+  {
+    n = 2147483648;
+  }
   if (!ft_atoi(result->value) && (result->data->flags_existence & PRECISION))
     return ;
    else
      {
-       if (result->neg)
-	 {
-	   ft_putnbr_fd(n, 1);
-	 }
-       else
-	 {
-	   ft_putstr_fd(result->value, 1);
-	 }
+       if (result->neg && (ft_atoi(result->value) != MIN_INTEGER))
+	        ft_putnbr_fd(n, 1);
+        else if (ft_atoi(result->value) == MIN_INTEGER)
+            ft_putnbr_long(2147483648);
+        //{
+        //    ft_putstr_fd("21474", 1);
+        //    ft_putstr_fd("83648", 1);
+       // }
+	    else
+	        ft_putstr_fd(result->value, 1);
      }
   (void)n;
 }

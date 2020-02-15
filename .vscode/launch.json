@@ -4,11 +4,12 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "lldb",
             "request": "launch",
             "name": "zero",
-            "program": "${workspaceFolder}/data_gathering_abstraction/a.out",
+            "program": "${workspaceFolder}/a.out",
             "args": ["ddf6vewg64f", "gtwthgdwthdwfteewhrtag6h4ffdhsd"],
             "cwd": "${workspaceFolder}"
         }
