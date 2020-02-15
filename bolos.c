@@ -4,7 +4,7 @@
 #include "data_reading/data_read.h"
 int main()
 {
-  printf("%*da\n", 5, 0);
-  ft_printf("%*da", 5 ,0);
+  printf("%3d\n", 100);
+  ft_printf("%3d", 100);
   return (0);
 }

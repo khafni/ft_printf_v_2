@@ -1,6 +1,6 @@
 #include "../data_gathering_abstraction/data_gathering.h"
 #include "../data_intrepretation/intrepretor.h"
-#include "../libft/libft.h"
+#include "../utills/utills.h"
 
 int format_length (char *s)
 {

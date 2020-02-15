@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
-#include "../libft/libft.h"
+#include "../utills/utills.h"
 #include "data_gathering.h"
 
 

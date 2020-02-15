@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../libft/libft.h"
+#include "../utills/utills.h"
 #include "../data_gathering_abstraction/data_gathering.h"
 #include "intrepretor.h"
 
