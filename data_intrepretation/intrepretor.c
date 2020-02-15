@@ -28,13 +28,23 @@ void    result_destroy(t_result *result)
 }
 void	precision_handler(t_format *holder, t_result *result, int size)
 {
+  if (result->neg)
+    size--;
   if (holder->precision > 0 && holder->precision > size)
   {
     result->pr_anl = holder->precision - size;
     result->zeros = holder->precision - size;
   }
 }
+/*
+int  fw_filler (t_format *holder, t_result *result, int size)
+{
+  int n;
 
+  n = 0;
+
+}
+*/
 void	idk_calculator (t_format *holder, t_result *result, int size)
 {
   precision_handler(holder, result, size);
@@ -43,6 +53,9 @@ void	idk_calculator (t_format *holder, t_result *result, int size)
       if ((!(holder->flags_existence & PRECISION) || holder->precision < 0)
       && ft_abs(holder->field_width) > size)
 	      result->zeros = ft_abs(holder->field_width) - size;
+      if ((holder->flags_existence & PRECISION)
+      && ft_abs(holder->field_width) > size)
+	      result->spaces = ft_abs(holder->field_width) - result->pr_anl - size;
   }
   else if (holder->flags_existence & PRECISION)
   {
