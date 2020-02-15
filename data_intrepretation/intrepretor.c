@@ -16,6 +16,7 @@ t_result *result_init(void)
     result->neg = 0;
     result->pr_anl = 0;
     result->value = NULL;
+    result->data = NULL;
     return (result);
 }
 
