@@ -55,28 +55,29 @@ void p_zeros(t_result *result)
 
 void    p_num(t_result *result)
 {
-    int n;
+  int n;
 
-    n = -1 * ft_atoi(result->value);
+  n = -1 * ft_atoi(result->value);
     /*
     if (!ft_atoi(result->value) && !result->data->precision)
     {
         return ;
     }
     */
-    if (!ft_atoi(result->value) && result->data->precision >= 0)
-      return ;
-    else
-    {
-        if (result->neg)
-        {
-            ft_putnbr_fd(n, 1);
-        }
-        else
-        {
-            ft_putstr_fd(result->value, 1);
-        }
-    }
+  if (!ft_atoi(result->value) && (result->data->flags_existence & PRECISION))
+    return ;
+   else
+     {
+       if (result->neg)
+	 {
+	   ft_putnbr_fd(n, 1);
+	 }
+       else
+	 {
+	   ft_putstr_fd(result->value, 1);
+	 }
+     }
+  (void)n;
 }
 
 void print_result(t_result *result)

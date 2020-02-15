@@ -104,7 +104,7 @@ void precision_getter(char *format, t_format *holder, va_list vlist)
 	{
 		if (*format == '.')
 		{
-			holder->flags_existence |= PRECISION;
+			holder->flags_existence  |= PRECISION;
 			format++;
 			if (ft_isdigit(*format))
 			{

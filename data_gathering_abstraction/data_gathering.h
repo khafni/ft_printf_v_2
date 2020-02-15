@@ -8,8 +8,6 @@
 #define FS 16
 #define PRECISION 32
 #define SS 64
-
-
 /*
 ** a struct that holds data about the whole format of
 ** ft_printf including the flags

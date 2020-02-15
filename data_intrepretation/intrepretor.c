@@ -35,6 +35,11 @@ void	precision_handler(t_format *holder, t_result *result, int size)
     result->pr_anl = holder->precision - size;
     result->zeros = holder->precision - size;
   }
+  else if (!ft_atoi(holder->value) && (holder->precision < 0))
+    {
+      result->zeros += 1;
+      result->pr_anl += 1;
+    }
 }
 /*
 int  fw_filler (t_format *holder, t_result *result, int size)
@@ -45,19 +50,34 @@ int  fw_filler (t_format *holder, t_result *result, int size)
 
 }
 */
+
+
+void	zero_case_handler (t_format *holder, int *size)
+{
+  if (holder->flags_existence & PRECISION)
+    *size = 0;
+  // if (holder->precision <= 0 && holder->field_width <= 0)
+  //result->zeros = 1;
+  
+}
+
 void	idk_calculator (t_format *holder, t_result *result, int size)
 {
+  if (!ft_atoi(holder->value))
+    zero_case_handler(holder, &size);
   precision_handler(holder, result, size);
   if (holder->flags_existence & FW_ZERO)
   {
       if ((!(holder->flags_existence & PRECISION) || holder->precision < 0)
-      && ft_abs(holder->field_width) > size)
-	      result->zeros = ft_abs(holder->field_width) - size;
-      if ((holder->flags_existence & PRECISION)
-      && ft_abs(holder->field_width) > size)
-	      result->spaces = ft_abs(holder->field_width) - result->pr_anl - size;
+      && holder->field_width > size)
+	result->zeros = holder->field_width - size;
+      //else if ((holder->flags_existence & PRECISION)
+      //&& ft_abs(holder->field_width) > size)
+      else if (ft_abs(holder->field_width) > size)
+	result->spaces = ft_abs(holder->field_width) - result->pr_anl - size;
   }
-  else if (holder->flags_existence & PRECISION)
+  //else if (holder->flags_existence & PRECISION)
+  else
   {
     if (ft_abs(holder->field_width) > size)
       result->spaces = ft_abs(holder->field_width) - result->pr_anl - size;
