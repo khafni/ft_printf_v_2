@@ -70,10 +70,6 @@ void    p_num(t_result *result)
 	        ft_putnbr_fd(n, 1);
         else if (ft_atoi(result->value) == MIN_INTEGER)
             ft_putnbr_long(2147483648);
-        //{
-        //    ft_putstr_fd("21474", 1);
-        //    ft_putstr_fd("83648", 1);
-       // }
 	    else
 	        ft_putstr_fd(result->value, 1);
      }
@@ -109,38 +105,46 @@ void print_result(t_result *result)
         p_num(result);
     }
 }
-void g_parser(va_list alist, char **str_ptr)
+int g_parser(va_list alist, char **str_ptr)
 {
     int l;
+    int len_r;
     char *pt;
     t_result *result;
 
+    len_r = 0;
     pt = extractor(*str_ptr);
     result = intrepert(*str_ptr, alist);
     print_result(result);
     l = format_length(*str_ptr) + 1;
+    len_r = result->spaces + result->zeros + ft_strlen(result->value);
     *str_ptr += l;
     free(pt);
     result_destroy(result);
+    return (len_r);
 }
 int ft_printf(char *str, ...)
 {
     va_list alist;
+    int l;
+
+    l = 0;
     va_start(alist, str);
     while (*str)
     {
         if (*str == '%')
         {
-                g_parser(alist, &str);
+                l += g_parser(alist, &str);
         }
         else
         {
             ft_putchar_fd(*str, 1);
+            l++;
         }
         str++;
     }
     va_end(alist);
-    return (0);
+    return (l);
 }
 /*
 int main()

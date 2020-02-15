@@ -7,6 +7,7 @@
 
 int main()
 {
+  /*
   printf("%3d\n", 100);
   ft_printf("%3d", 100);
   printf("\n********\n");
@@ -31,4 +32,6 @@ int main()
   printf("a%da\n", 0);
   ft_printf("a%da", 0);
   return (0);
+  */
+ printf("\n%d\n", ft_printf("%d", 42));
 }
