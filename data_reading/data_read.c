@@ -128,6 +128,7 @@ int ft_printf(char *str, ...)
     va_list alist;
     int l;
 
+    g_return = 0;
     l = 0;
     va_start(alist, str);
     while (*str)
@@ -144,7 +145,7 @@ int ft_printf(char *str, ...)
         str++;
     }
     va_end(alist);
-    return (l);
+    return (g_return);
 }
 /*
 int main()
