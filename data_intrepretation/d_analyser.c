@@ -42,44 +42,15 @@ void	idk_calculator (t_format *holder, t_result *result, int size)
 }
 
 
-t_result *d_intrepert(char *fstr, va_list alist)
+void  d_intrepert(t_format *holder, t_result *result)
 {
-    t_format *holder;
-    t_result *result;
-
-    holder = get_data(fstr, alist);
-    result = result_init();
     result->data = holder;
     if (holder->minus)
         result->minus = 1;
     if (ft_atoi(holder->value) < 0)
         result->neg = 1;
     if (holder->field_width < 0)
-    {
-        //holder->field_width *= -1;
         result->minus = 1;
-    }
     result->value = ft_strdup(holder->value);
     idk_calculator(holder, result, ft_strlen(result->value));
-    return (result);
 }
-
-void r_debugger(char *str, ...)
-{
-	va_list alist;
-	t_result *holder;
-
-	va_start(alist, str);
-	holder = d_intrepert(str, alist);
-	printf("UwU: %d", holder->pr_anl);
-	printf("\nzeros: %d", holder->zeros);
-	va_end(alist);
-}
-/*
-int main()
-{
-    r_debugger("%0*da\n", 10, 42);
-    printf("\n%0*da\n", 10, 42);
-    return (0);
-}
-*/

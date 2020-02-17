@@ -25,7 +25,16 @@ void    result_destroy(t_result *result)
     free(result->data);
     free(result);
 }
+t_result    *intreptor(char *str, va_list alist)
+{
+    t_format    *holder;
+    t_result    *result;
 
+    holder = get_data(fstr, alist);
+    result = result_init();
+    
+    return (result);
+}
 void r_debugger(char *str, ...)
 {
 	va_list alist;
