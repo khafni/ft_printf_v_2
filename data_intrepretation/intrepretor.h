@@ -20,5 +20,5 @@ void    result_destroy(t_result *result);
 void zeros_calculator(t_format *holder, t_result *result, int size);
 void spaces_calculator(t_format *holder, t_result *result, int size);
 void spaces_calculator_neg_zeropad (t_format *holder, t_result *result, int size);
-t_result *intrepert(char *fstr, va_list alist);
+t_result *d_intrepert(char *fstr, va_list alist);
 void	idk_calculator (t_format *holder, t_result *result, int size);

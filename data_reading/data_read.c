@@ -3,33 +3,7 @@
 #include "data_read.h"
 #include "../utills/utills.h"
 
-int format_length (char *s)
-{
-	int length;
 
-	length = 0;
-	s++;
-	while (*s != 'c' && *s != 's' && *s != 'p' &&
-	*s != 'd' && *s != 'i' && *s != 'u' &&
-	*s != 'x' && *s != 'X' && *s != '%' && *s)
-	{
-		length++;
-		s++;
-	}
-	return (length);
-}
-
-char *extractor(char *format)
-{
-	char *holder;
-	int l;
-
-	l = format_length(format);
-	format++;
-	holder = malloc(sizeof(char) * l);
-	ft_strlcpy(holder, format, l + 1);
-	return (holder);
-}
 void p_spaces(t_result *result)
 {
     int i;
@@ -114,7 +88,7 @@ int g_parser(va_list alist, char **str_ptr)
 
     len_r = 0;
     pt = extractor(*str_ptr);
-    result = intrepert(*str_ptr, alist);
+    result = d_intrepert(*str_ptr, alist);
     print_result(result);
     l = format_length(*str_ptr) + 1;
     len_r = result->spaces + result->zeros + ft_strlen(result->value);

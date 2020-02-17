@@ -52,4 +52,9 @@ void				ft_putnbr_long(long n);
 **	function that "apply" the absolute value on a number
 */
 int		ft_abs(int nb);
+
+int format_length (char *s);
+
+
+char *extractor(char *format);
 #endif
