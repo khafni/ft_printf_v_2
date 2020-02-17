@@ -1,32 +1,4 @@
-#include <stdio.h>
-#include "../utills/utills.h"
-#include "../data_gathering_abstraction/data_gathering.h"
 #include "intrepretor.h"
-
-t_result *result_init(void)
-{
-    t_result *result;
-
-    if (!(result = malloc(sizeof(t_result))))
-        return (NULL);
-    result->spaces = 0;
-    result->max_characters = -1;
-    result->zeros = 0;
-    result->minus = 0;
-    result->neg = 0;
-    result->pr_anl = 0;
-    result->value = NULL;
-    result->data = NULL;
-    return (result);
-}
-
-void    result_destroy(t_result *result)
-{
-    free(result->value);
-    free(result->data->value);
-    free(result->data);
-    free(result);
-}
 void	precision_handler(t_format *holder, t_result *result, int size)
 {
   if (result->neg)
@@ -62,7 +34,6 @@ void	idk_calculator (t_format *holder, t_result *result, int size)
       else if (ft_abs(holder->field_width) > size)
 	        result->spaces = ft_abs(holder->field_width) - result->pr_anl - size;
   }
-  //else if (holder->flags_existence & PRECISION)
   else
   {
     if (ft_abs(holder->field_width) > size)
@@ -99,7 +70,7 @@ void r_debugger(char *str, ...)
 	t_result *holder;
 
 	va_start(alist, str);
-	holder = intrepert(str, alist);
+	holder = d_intrepert(str, alist);
 	printf("UwU: %d", holder->pr_anl);
 	printf("\nzeros: %d", holder->zeros);
 	va_end(alist);

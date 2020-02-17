@@ -1,3 +1,5 @@
+#include "../utills/utills.h"
+#include "../data_gathering_abstraction/data_gathering.h"
 typedef struct
 {
   int spaces;

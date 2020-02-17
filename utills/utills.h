@@ -1,5 +1,5 @@
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef UTILLS_H
+# define UTILLS_H
 # include <string.h>
 # include <stdlib.h>
 # include <stdio.h>

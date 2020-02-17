@@ -1,3 +1,5 @@
+#ifndef DATA_GATHERING_H
+#define DATA_GATHERING_H
 #include <stdio.h>
 #include <stdarg.h>
 
@@ -35,3 +37,4 @@ void flags_filler(char *str, t_format *format);
 void field_width_getter(char *format, t_format *holder, va_list vlist);
 void precision_getter(char *format, t_format *holder, va_list vlist);
 t_format *get_data (char *f_sstr, va_list vlist);
+#endif
