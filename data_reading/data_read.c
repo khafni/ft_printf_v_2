@@ -31,6 +31,11 @@ void    p_num(t_result *result)
 {
   long n;
 
+  if (!(result->data->specifier == 'd' || result->data->specifier == 'i'))
+    {
+      ft_putstr_fd(result->value, 1);
+      return ;
+    }
   n = -1 * ft_ltoi(result->value);
   if (n == MIN_INTEGER)
   {
@@ -41,20 +46,29 @@ void    p_num(t_result *result)
    else
      {
        if (result->neg && (ft_ltoi(result->value) != MIN_INTEGER))
-	        ft_putnbr_long(n);
+	 ft_putnbr_long(n);
         else if (ft_ltoi(result->value) == MIN_INTEGER)
-            ft_putnbr_long(2147483648);
-	    else
-	        ft_putstr_fd(result->value, 1);
+	  ft_putnbr_long(2147483648);
+	else
+	  ft_putstr_fd(result->value, 1);
      }
   (void)n;
+}
+
+void unsigned_minus_removed (t_result *result)
+{
+  char c;
+
+  c = result->data->specifier;
+  if (c == 'd' || c == 'i')
+      ft_putchar_fd('-', 1);
 }
 
 void print_result(t_result *result)
 {
     if (result->neg && result->minus)
     {
-        ft_putchar_fd('-', 1);
+    	unsigned_minus_removed(result);
         p_zeros(result);
         p_num(result);
         p_spaces(result);
@@ -62,7 +76,7 @@ void print_result(t_result *result)
     else if (result->neg && !result->minus)
     {
         p_spaces(result);
-        ft_putchar_fd('-', 1);
+    	unsigned_minus_removed(result);
         p_zeros(result);
         p_num(result);
     }
@@ -78,7 +92,6 @@ void print_result(t_result *result)
         p_zeros(result);
         p_num(result);
     }
-    //ft_putstr_fd(result->value, 1);
 }
 int g_parser(va_list alist, char **str_ptr)
 {
@@ -122,10 +135,10 @@ int ft_printf(char *str, ...)
     va_end(alist);
     return (g_return);
 }
-/*
+
 int main()
 {    
-    ft_printf("%10.9de\n", -4);
-    ft_printf("%10.9de", -4);
+    ft_printf("%10.9ue\n", -4);
+    printf("%10.9ue", -4);
     return (0);
-}*/
+}

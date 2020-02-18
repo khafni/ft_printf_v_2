@@ -50,23 +50,24 @@ t_result    *intreptor(char *str, va_list alist)
     fp(holder, result);
     return (result);
 }
-/*void r_debugger(char *str, ...)
+
+/*
+void r_debugger(char *str, ...)
 {
 	va_list alist;
 	t_result *holder;
 
 	va_start(alist, str);
-	holder = d_intrepert(str, alist);
-	printf("UwU: %d", holder->pr_anl);
-	printf("\nzeros: %d", holder->zeros);
+	holder = intreptor(str, alist);
+	ft_putstr_fd(holder->value, 1);
 	va_end(alist);
 }
-*/
-/*
+
+
 int main()
 {
-    r_debugger("%0*da\n", 10, 42);
-    printf("\n%0*da\n", 10, 42);
+    r_debugger("%0*ua\n", 10, -42);
+    printf("\n%0*ua\n", 10, -42);
     return (0);
 }
 */
