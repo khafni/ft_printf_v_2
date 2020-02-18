@@ -40,14 +40,13 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const*s1, char const *set);
 char				*ft_onealc(void);
 char				**ft_split(char const *s1, char c);
-char				*ft_itoa(int n);
+char				*ft_ltoa(long n);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 void				ft_putnbr_long(long n);
-
 /*
 **	function that "apply" the absolute value on a number
 */
@@ -55,6 +54,7 @@ int		ft_abs(int nb);
 
 int format_length (char *s);
 
+long    ft_ltoi(const char *str);
 
 char *extractor(char *format);
 #endif

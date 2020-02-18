@@ -31,18 +31,18 @@ void    p_num(t_result *result)
 {
   long n;
 
-  n = -1 * ft_atoi(result->value);
+  n = -1 * ft_ltoi(result->value);
   if (n == MIN_INTEGER)
   {
     n = 2147483648;
   }
-  if (!ft_atoi(result->value) && (result->data->flags_existence & PRECISION))
+  if (!ft_ltoi(result->value) && (result->data->flags_existence & PRECISION))
     return ;
    else
      {
-       if (result->neg && (ft_atoi(result->value) != MIN_INTEGER))
-	        ft_putnbr_fd(n, 1);
-        else if (ft_atoi(result->value) == MIN_INTEGER)
+       if (result->neg && (ft_ltoi(result->value) != MIN_INTEGER))
+	        ft_putnbr_long(n);
+        else if (ft_ltoi(result->value) == MIN_INTEGER)
             ft_putnbr_long(2147483648);
 	    else
 	        ft_putstr_fd(result->value, 1);
@@ -78,6 +78,7 @@ void print_result(t_result *result)
         p_zeros(result);
         p_num(result);
     }
+    //ft_putstr_fd(result->value, 1);
 }
 int g_parser(va_list alist, char **str_ptr)
 {

@@ -31,7 +31,8 @@ intreptor_f_pointer which_intreptor (t_format *holder)
     intreptor_f_pointer fp;
 
     fp = NULL;
-    if (holder->specifier == 'd' || holder->specifier == 'i')
+    if (holder->specifier == 'd' || holder->specifier == 'i' 
+    || holder->specifier == 'u')
         fp = &d_intrepert;
     return (fp);
 }
@@ -46,10 +47,10 @@ t_result    *intreptor(char *str, va_list alist)
     holder = get_data(str, alist);
     result = result_init();
     fp = which_intreptor(holder);
-    result = fp(holder, result);
+    fp(holder, result);
     return (result);
 }
-void r_debugger(char *str, ...)
+/*void r_debugger(char *str, ...)
 {
 	va_list alist;
 	t_result *holder;
@@ -60,6 +61,7 @@ void r_debugger(char *str, ...)
 	printf("\nzeros: %d", holder->zeros);
 	va_end(alist);
 }
+*/
 /*
 int main()
 {

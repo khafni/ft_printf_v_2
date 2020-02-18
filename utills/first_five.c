@@ -41,9 +41,9 @@ int		ft_isdigit(int c)
 	return (0);
 }
 
-static int	digitlen(int n)
+static long	digitlen(long n)
 {
-	int i;
+	long i;
 
 	i = 0;
 	if (n == 0)
@@ -58,9 +58,9 @@ static int	digitlen(int n)
 	return (i);
 }
 
-char		*ft_itoa(int n)
+char		*ft_ltoa(long n)
 {
-	int		m;
+	long		m;
 	char	*str;
 	long	nb;
 

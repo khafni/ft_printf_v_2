@@ -41,7 +41,6 @@ void	idk_calculator (t_format *holder, t_result *result, int size)
   }
 }
 
-
 void  d_intrepert(t_format *holder, t_result *result)
 {
     result->data = holder;

@@ -127,8 +127,10 @@ void	value_get(t_format *holder, va_list vlist)
 	{
 		if (holder->specifier == 's' || holder->specifier == 'c')
 			holder->value = ft_strdup(va_arg(vlist, char *));
+		else if (holder->specifier == 'd' || holder->specifier == 'i')
+			holder->value = ft_ltoa(va_arg(vlist, int));
 		else
-			holder->value = ft_itoa(va_arg(vlist, int));
+			holder->value = ft_ltoa(va_arg(vlist, unsigned int));
 	}
 }
 /*
@@ -169,12 +171,13 @@ void debugger(char *str, ...)
 	ft_putstr_fd(holder->value, 1);
 	va_end(alist);
 }
-*/
 
-/*
+
+
 int main()
 {
-    debugger("%0*.*d", -6, -5, 4);
+    debugger("%u", -1);
+	printf("\n%u", -1);
     return (0);
 }
 */
