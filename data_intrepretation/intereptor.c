@@ -26,18 +26,27 @@ void    result_destroy(t_result *result)
     free(result);
 }
 
-which_intreptor (t_format *holder)
-{}
+intreptor_f_pointer which_intreptor (t_format *holder)
+{
+    intreptor_f_pointer fp;
+
+    fp = NULL;
+    if (holder->specifier == 'd' || holder->specifier == 'i')
+        fp = &d_intrepert;
+    return (fp);
+}
 
 t_result    *intreptor(char *str, va_list alist)
 {
     t_format    *holder;
     t_result    *result;
-    void (*intreptor_f_pointer)(t_format *holder, t_result *result);
+    intreptor_f_pointer fp;
 
-    intreptor_f_pointer = which_intreptor(holder)
+   
     holder = get_data(str, alist);
     result = result_init();
+    fp = which_intreptor(holder);
+    result = fp(holder, result);
     return (result);
 }
 void r_debugger(char *str, ...)

@@ -33,5 +33,5 @@ int main()
   ft_printf("a%da", 0);
   return (0);
   */
- printf("\n%d\n", ft_printf("%d", 42));
+ ft_printf("\n%i\n", ft_printf("%d", 42));
 }

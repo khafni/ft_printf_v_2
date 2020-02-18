@@ -88,7 +88,7 @@ int g_parser(va_list alist, char **str_ptr)
 
     len_r = 0;
     pt = extractor(*str_ptr);
-    result = d_intrepert(*str_ptr, alist);
+    result = intreptor(*str_ptr, alist);
     print_result(result);
     l = format_length(*str_ptr) + 1;
     len_r = result->spaces + result->zeros + ft_strlen(result->value);

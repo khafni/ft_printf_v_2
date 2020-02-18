@@ -1,3 +1,4 @@
+#include "utills.h"
 int format_length (char *s)
 {
 	int length;
