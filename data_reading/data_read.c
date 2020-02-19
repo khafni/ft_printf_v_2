@@ -111,6 +111,7 @@ int g_parser(va_list alist, char **str_ptr)
     result_destroy(result);
     return (len_r);
 }
+/*
 int ft_printf(char *str, ...)
 {
     va_list alist;
@@ -142,3 +143,4 @@ int main()
     printf("%10.9ue", -4);
     return (0);
 }
+*/
