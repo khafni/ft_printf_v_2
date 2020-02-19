@@ -34,6 +34,8 @@ intreptor_f_pointer which_intreptor (t_format *holder)
     if (holder->specifier == 'd' || holder->specifier == 'i' 
     || holder->specifier == 'u')
         fp = &d_intrepert;
+    else if (holder->specifier == 'x')
+        fp = x_intrepert;
     return (fp);
 }
 
@@ -63,11 +65,12 @@ void r_debugger(char *str, ...)
 	va_end(alist);
 }
 
-
+.
 int main()
 {
-    r_debugger("%0*ua\n", 10, -42);
-    printf("\n%0*ua\n", 10, -42);
+    r_debugger("%x\n", 1996);
+    printf("\n%x\n", 1996);
     return (0);
 }
+
 */

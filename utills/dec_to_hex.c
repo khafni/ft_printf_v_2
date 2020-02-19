@@ -1,5 +1,4 @@
 #include "utills.h"
-#include <limits.h>
 
 long	dec_to_hex_length(long n)
 {
@@ -51,6 +50,7 @@ char * h_d_to_a (long *ar, int len)
       i++;
     }
   buf[i] = '\0';
+  free(ar);
   return (buf);
 }
 char	*dec_to_hex(long nb)
@@ -73,12 +73,4 @@ char	*dec_to_hex(long nb)
    str = h_d_to_a(buf, len);
   rev_str(str, 0, ft_strlen(str) - 1);
   return (str);
-}
-
-int main()
-{
-  //printf("\nnumber in hex: %x*****\n", 4294967295);
-  printf("my hex: %s\n", dec_to_hex(4294967295));
-  printf("%u", UINT_MAX);
-  return (0);
 }

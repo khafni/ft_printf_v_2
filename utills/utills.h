@@ -57,4 +57,15 @@ int format_length (char *s);
 long    ft_ltoi(const char *str);
 
 char *extractor(char *format);
+
+/*
+** convert from decimal to hexdecimal
+*/
+char	*dec_to_hex(long nb);
+
+/*
+**	convert from hex to dec
+*/
+long    hex_to_dec(char *nb);
+
 #endif

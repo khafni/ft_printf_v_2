@@ -8,7 +8,6 @@
 
 int main()
 {
-  ft_printf("*%u*", -1);
-  printf("\n*%u*\n", -1);
+  printf("\n*%4x*\n", 16);
  return (0);
 }
