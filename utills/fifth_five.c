@@ -37,20 +37,25 @@ void h_d_to_a (int *str)
 int	*dec_to_hex(long n)
 {
   int nb;
-  int *buf;
+  int **buf;
   int i;
 
   i = 0;
   nb = n;
   if(!(buf = malloc (sizeof(int)* (dec_to_hex_length(n) + 1))))
     return (NULL);
+  while (*buf)
+    {
+      
+    }
+  
   while (nb)
     {
       buf[i] = nb % 16 + 48;
       nb /= 16;
       i++;
     }
-  //buf[i] = '\0';
+  buf[i] = '\0';
   //rev_str(buf);
   return (buf);
 }
