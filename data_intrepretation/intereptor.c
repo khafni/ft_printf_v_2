@@ -34,7 +34,7 @@ intreptor_f_pointer which_intreptor (t_format *holder)
     if (holder->specifier == 'd' || holder->specifier == 'i' 
     || holder->specifier == 'u')
         fp = &d_intrepert;
-    else if (holder->specifier == 'x')
+    else if (holder->specifier == 'x' || holder->specifier == 'X')
         fp = x_intrepert;
     return (fp);
 }
