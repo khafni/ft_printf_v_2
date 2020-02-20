@@ -1,4 +1,5 @@
 #include "utills.h"
+
 int format_length (char *s)
 {
 	int length;
@@ -48,4 +49,14 @@ long    ft_ltoi(const char *str)
 		i++;
 	}
 	return (neg * nb);
+}
+
+void	ft_to_lower (char *str)
+{
+  while(*str)
+    {
+      if (*str >= 97 && *str <= 122)
+	*str -= 32;
+      str++;
+    }
 }

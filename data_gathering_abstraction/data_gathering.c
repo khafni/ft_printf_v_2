@@ -112,7 +112,7 @@ void precision_getter(char *format, t_format *holder, va_list vlist)
 				break ;
 			}
 			else if (*format == '*')
-			{
+n			{
 				holder->flags_existence |= SS;
 				holder->precision = va_arg(vlist, int);
 				break ;
@@ -129,7 +129,7 @@ void	value_get(t_format *holder, va_list vlist)
 		  holder->value = ft_strdup(va_arg(vlist, char *));
 		else if (holder->specifier == 'd' || holder->specifier == 'i')
 		  holder->value = ft_ltoa(va_arg(vlist, int));
-		else if (holder->specifier == 'x')
+		else if (holder->specifier == 'x' || holder->specifier == 'X')
 		  holder->value = dec_to_hex(va_arg(vlist, unsigned int));
 		else
 		  holder->value = ft_ltoa(va_arg(vlist, unsigned int));

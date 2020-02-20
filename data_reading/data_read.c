@@ -43,8 +43,8 @@ void    p_num(t_result *result)
   }
   if (!ft_ltoi(result->value) && (result->data->flags_existence & PRECISION))
     return ;
-   else
-     {
+  else
+    {
        if (result->neg && (ft_ltoi(result->value) != MIN_INTEGER))
 	 ft_putnbr_long(n);
         else if (ft_ltoi(result->value) == MIN_INTEGER)
@@ -139,8 +139,8 @@ int ft_printf(char *str, ...)
 
 int main()
 {    
-    ft_printf("%.55xe\n", -1996);
-    printf("%.55xe", -1996);
+    ft_printf("%.55Xe\n", -1996);
+    printf("%.55Xe", -1996);
     return (0);
 }
 

@@ -68,4 +68,8 @@ char	*dec_to_hex(long nb);
 */
 long    hex_to_dec(char *nb);
 
+/*
+**	change lowercase letters in a string to uppercase
+*/
+void	ft_to_lower (char *str);
 #endif

@@ -48,4 +48,6 @@ void  x_intrepert(t_format *holder, t_result *result)
         result->minus = 1;
     result->value = ft_strdup(holder->value);
     x_idk_calculator(holder, result, ft_strlen(result->value));
+    if (holder->specifier == 'X')
+      ft_to_lower(holder->value);
 }
