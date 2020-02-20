@@ -131,7 +131,7 @@ void	value_get(t_format *holder, va_list vlist)
 		  holder->value = ft_ltoa(va_arg(vlist, int));
 		else if (holder->specifier == 'x' || holder->specifier == 'X'
 		|| holder->specifier == 'p')
-		  holder->value = dec_to_hex(va_arg(vlist, unsigned int));
+		  holder->value = dec_to_hex(va_arg(vlist, long));
 		else
 		  holder->value = ft_ltoa(va_arg(vlist, unsigned int));
 	}
@@ -182,10 +182,13 @@ void debugger(char *str, ...)
 int main()
 {
 	int *x;
+	int j;
 
-	x = NULL;
+	j = 42;
+	x = &j;
  
-  debugger("%p", (long)x);
+  //debugger("%p\n", x);
+  printf("");
   //printf("\n%x", 4294967295);
   return (0);
 }
