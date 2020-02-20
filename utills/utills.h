@@ -61,12 +61,12 @@ char *extractor(char *format);
 /*
 ** convert from decimal to hexdecimal
 */
-char	*dec_to_hex(long nb);
+char	*dec_to_hex(size_t nb);
 
 /*
 **	convert from hex to dec
 */
-long    hex_to_dec(char *nb);
+size_t    hex_to_dec(char *nb);
 
 /*
 **	change lowercase letters in a string to uppercase

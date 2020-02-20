@@ -15,11 +15,11 @@ int ft_pow(int nb, int power)
     return(r);
 }
 
-long    hex_to_dec(char *nb)
+size_t    hex_to_dec(char *nb)
 {
-    int dec_value;
-    int i;
-    int l;
+    size_t dec_value;
+    size_t i;
+    size_t l;
 
     l = ft_strlen(nb);
     dec_value = 0;

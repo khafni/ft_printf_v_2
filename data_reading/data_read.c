@@ -137,10 +137,16 @@ int ft_printf(char *str, ...)
     return (g_return);
 }
 
+/*
 int main()
-{    
-    ft_printf("%.55Xe\n", -1996);
-    printf("%.55Xe", -1996);
-    return (0);
-}
+{
+  int x;
+  int *p = NULL;
 
+  x = 30;
+  *p = x;
+  //printf("%ld", ((long)p));
+  ft_printf("\n%p", p);
+ return (0);
+}
+*/

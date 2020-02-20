@@ -112,7 +112,7 @@ void precision_getter(char *format, t_format *holder, va_list vlist)
 				break ;
 			}
 			else if (*format == '*')
-n			{
+			{
 				holder->flags_existence |= SS;
 				holder->precision = va_arg(vlist, int);
 				break ;
@@ -129,12 +129,14 @@ void	value_get(t_format *holder, va_list vlist)
 		  holder->value = ft_strdup(va_arg(vlist, char *));
 		else if (holder->specifier == 'd' || holder->specifier == 'i')
 		  holder->value = ft_ltoa(va_arg(vlist, int));
-		else if (holder->specifier == 'x' || holder->specifier == 'X')
+		else if (holder->specifier == 'x' || holder->specifier == 'X'
+		|| holder->specifier == 'p')
 		  holder->value = dec_to_hex(va_arg(vlist, unsigned int));
 		else
 		  holder->value = ft_ltoa(va_arg(vlist, unsigned int));
 	}
 }
+
 /*
 ** the function to get the the data
 */
@@ -176,12 +178,14 @@ void debugger(char *str, ...)
 	va_end(alist);
 }
 
-/*
+
 int main()
 {
+	int *x;
+
+	x = NULL;
  
-  debugger("%x", 4294967295);
+  debugger("%p", (long)x);
   //printf("\n%x", 4294967295);
   return (0);
 }
-*/

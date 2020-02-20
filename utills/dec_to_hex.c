@@ -1,6 +1,6 @@
 #include "utills.h"
 
-long	dec_to_hex_length(long n)
+size_t	dec_to_hex_length(size_t n)
 {
   int l;
 
@@ -24,7 +24,7 @@ void	rev_str(char *str, int begin, int end)
   rev_str(str, ++begin, --end);
 }
 
-char * h_d_to_a (long *ar, int len)
+char * h_d_to_a (size_t *ar, int len)
 {
   int i;
   char *buf;
@@ -53,16 +53,17 @@ char * h_d_to_a (long *ar, int len)
   free(ar);
   return (buf);
 }
-char	*dec_to_hex(long nb)
+
+char	*dec_to_hex(size_t nb)
 {
-  long *buf;
+  size_t *buf;
   int i;
   int len;
   char *str;
 
   i = 0;
   len = dec_to_hex_length(nb);
-  if(!(buf = malloc (sizeof(long)* len)))
+  if(!(buf = malloc (sizeof(size_t)* len)))
     return (NULL);
   while (nb)
     {

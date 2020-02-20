@@ -4,10 +4,3 @@
 #include "utills/utills.h"
 #include <stdint.h>
 
-
-
-int main()
-{
-  printf("\n*%4x*\n", 16);
- return (0);
-}
