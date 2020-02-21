@@ -187,14 +187,12 @@ void debugger(char *str, ...)
 	ft_putchar_fd('\n', 1);
 	*/
 	ft_putstr_fd(holder->value, 1);
-	//printf("OK");
 	va_end(alist);
 }
 
-/*
+
 int main()
 {
-  debugger("%-42x\n", 0);
+  debugger("%s\n", NULL);
   return (0);
 }
-*/

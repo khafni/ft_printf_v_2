@@ -44,8 +44,6 @@ char	*ft_strdup(const char *s1)
 	char	*str;
 
 	len = 0;
-	if (!s1)
-		return (NULL);
 	if (s1)
 	  len = ft_strlen(s1);
 	if (!(str = (char *)malloc(len + 1)))
@@ -55,6 +53,7 @@ char	*ft_strdup(const char *s1)
 	str[len] = '\0';
 	return ((char *)ft_memcpy(str, s1, len));
 }
+
 
 size_t		ft_strlcpy(char *dst, const char *src, size_t size)
 {
@@ -74,16 +73,3 @@ size_t		ft_strlcpy(char *dst, const char *src, size_t size)
 	}
 	return (j);
 }
-/*
-int main()
-{
-	//char *p1;
-	char *p2;
-
-
-	//p1 = ft_strdup(NULL);
-	p2 = ft_strdup(NULL);
-	ft_putstr_fd(p2, 1);
-	return (0);
-}
-*/

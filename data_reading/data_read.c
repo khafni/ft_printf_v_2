@@ -59,7 +59,7 @@ void ft_print_max_s(t_result *result)
 {
   int m;
 
-  if (result->value == NULL)
+   if (!result->value)
     {
       ft_putstr_fd(NULL , 1);
       return ;
@@ -69,7 +69,7 @@ void ft_print_max_s(t_result *result)
   while (*result->value && m--)
     {
       ft_putchar_fd(*result->value, 1);
-	result->value++;
+  	result->value++;
     }
 }
 
@@ -177,12 +177,13 @@ int ft_printf(char *str, ...)
     va_end(alist);
     return (g_return);
 }
+
 /*
 int main()
 {
   //printf("\n*%x*\n", 0);
   //printf("a%xa", 0);
-  ft_printf("\na%da", 0);
+  ft_printf("\na%sa", NULL);
   //printf("\n%*ca", -40, 'Z');
  return (0);
 }
