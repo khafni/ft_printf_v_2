@@ -20,10 +20,13 @@ t_result *result_init(void)
 
 void    result_destroy(t_result *result)
 {
+
+  if (!result->value)
     free(result->value);
+  if (!result->data->value)
     free(result->data->value);
-    free(result->data);
-    free(result);
+  free(result->data);
+  free(result);
 }
 
 intreptor_f_pointer which_intreptor (t_format *holder)
@@ -34,8 +37,11 @@ intreptor_f_pointer which_intreptor (t_format *holder)
     if (holder->specifier == 'd' || holder->specifier == 'i' 
     || holder->specifier == 'u')
         fp = &d_intrepert;
-    else if (holder->specifier == 'x' || holder->specifier == 'X')
+    else if (holder->specifier == 'x' || holder->specifier == 'X'
+	     || holder->specifier == 'p')
         fp = x_intrepert;
+    else if (holder->specifier == 'c' || holder->specifier == '%')
+      fp = c_per_interpret;
     return (fp);
 }
 
@@ -53,7 +59,7 @@ t_result    *intreptor(char *str, va_list alist)
     return (result);
 }
 
-/*
+
 void r_debugger(char *str, ...)
 {
 	va_list alist;
@@ -62,15 +68,18 @@ void r_debugger(char *str, ...)
 	va_start(alist, str);
 	holder = intreptor(str, alist);
 	ft_putstr_fd(holder->value, 1);
+  ft_putchar_fd(holder->data->s_v, 1);
 	va_end(alist);
 }
-
-.
+/*
 int main()
 {
-    r_debugger("%x\n", 1996);
-    printf("\n%x\n", 1996);
-    return (0);
-}
+  int *p;
+  int x = 4;
 
+  p = &x;
+  r_debugger("%c\n", 'Z');
+  //printf("\n%c\n", 'Z');
+  return (0);
+}
 */

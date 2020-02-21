@@ -16,15 +16,17 @@
 */
 typedef	struct
 {
-	char	specifier;
-	int		field_width;
-	int		precision;
-	int 	minus;
-	int 	plus;
-	int 	hashtag;
-	int 	zero;
-	char	*value;
-	int		flags_existence;
+  char	specifier;
+  int		field_width;
+  int		precision;
+  int 	minus;
+  int 	plus;
+  int 	hashtag;
+  int 	zero;
+  char	*value;
+  int		flags_existence;
+  char s_v;
+  
 }	t_format;
 
 /*

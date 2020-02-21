@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "../data_gathering_abstraction/flags.c"
-#include "../libft/libft.h"
 
 void c_print_n_space(int n)
 {

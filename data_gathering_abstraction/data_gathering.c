@@ -43,6 +43,7 @@ t_format *data_init(void)
 	format->zero = 0;
 	format->value = NULL;
 	format->flags_existence = 0;
+	format->s_v = '0';
 	return (format);
 }
 
@@ -123,18 +124,29 @@ void precision_getter(char *format, t_format *holder, va_list vlist)
 }
 void	value_get(t_format *holder, va_list vlist)
 {
-	if (holder->specifier != '%' && holder->specifier != '@')
+  char *tmp;
+  
+  if (holder->specifier != '%' && holder->specifier != '@')
+    {
+      if (holder->specifier == 's')
+	holder->value = ft_strdup(va_arg(vlist, char *));
+      else if (holder->specifier == 'c')
+	holder->s_v = va_arg(vlist, int);
+      else if (holder->specifier == '%')
+	holder->s_v = '%';
+      else if (holder->specifier == 'd' || holder->specifier == 'i')
+	holder->value = ft_ltoa(va_arg(vlist, int));
+      else if (holder->specifier == 'x' || holder->specifier == 'X'
+	       || holder->specifier == 'p')
 	{
-		if (holder->specifier == 's' || holder->specifier == 'c')
-		  holder->value = ft_strdup(va_arg(vlist, char *));
-		else if (holder->specifier == 'd' || holder->specifier == 'i')
-		  holder->value = ft_ltoa(va_arg(vlist, int));
-		else if (holder->specifier == 'x' || holder->specifier == 'X'
-		|| holder->specifier == 'p')
-		  holder->value = dec_to_hex(va_arg(vlist, long));
-		else
-		  holder->value = ft_ltoa(va_arg(vlist, unsigned int));
+	  holder->value = dec_to_hex(va_arg(vlist, long));
+	  tmp = holder->value;
+	  holder->value = ft_strjoin("0x", holder->value);
+	  free(tmp);
 	}
+      else
+	holder->value = ft_ltoa(va_arg(vlist, unsigned int));
+    }
 }
 
 /*
@@ -173,8 +185,11 @@ void debugger(char *str, ...)
 	ft_putchar_fd('\n', 1);
 	ft_putnbr_fd(holder->zero ,1);
 	ft_putchar_fd('\n', 1);
-	*/
+	
 	ft_putstr_fd(holder->value, 1);
+	ft_putchar_fd(holder->s_v, 1);
+	*/
+	printf("fw: %d -: %d", holder->field_width, holder->minus);
 	va_end(alist);
 }
 
@@ -187,8 +202,8 @@ int main()
 	j = 42;
 	x = &j;
  
-  //debugger("%p\n", x);
-  printf("");
-  //printf("\n%x", 4294967295);
+  debugger("%-42c\n", 'k');
+  //printf("\n%c", 'k');
   return (0);
 }
+
