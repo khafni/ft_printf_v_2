@@ -4,3 +4,9 @@
 #include "utills/utills.h"
 #include <stdint.h>
 
+int main()
+{
+  ft_printf("*%s*\n", "ok");
+  //printf("*%s*", "ok");
+  return (0);
+}

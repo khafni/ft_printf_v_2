@@ -134,8 +134,9 @@ void	value_get(t_format *holder, va_list vlist)
       holder->s_v = '%';
   else if (holder->specifier == 'd' || holder->specifier == 'i')
     holder->value = ft_ltoa(va_arg(vlist, int));
-  else if (holder->specifier == 'x' || holder->specifier == 'X'
-	   || holder->specifier == 'p')
+  else if (holder->specifier == 'x' || holder->specifier == 'X')
+    holder->value = dec_to_hex(va_arg(vlist, long));
+  else if (holder->specifier == 'p')
     {
       holder->value = dec_to_hex(va_arg(vlist, long));
       tmp = holder->value;
@@ -163,6 +164,7 @@ t_format *get_data (char *f_sstr, va_list vlist)
 	value_get(container, vlist);
 
 	return (container);
+
 }
 
 void debugger(char *str, ...)
@@ -184,16 +186,15 @@ void debugger(char *str, ...)
 	ft_putnbr_fd(holder->zero ,1);
 	ft_putchar_fd('\n', 1);
 	*/
-	printf("%s", holder->value);
-	
+	ft_putstr_fd(holder->value, 1);
+	//printf("OK");
 	va_end(alist);
 }
 
 /*
 int main()
 {
-  debugger("%-42s\n", "ok cool");
+  debugger("%-42x\n", 0);
   return (0);
 }
-
 */

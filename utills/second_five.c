@@ -1,4 +1,5 @@
 #include "utills.h"
+
 void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
@@ -9,6 +10,7 @@ void	ft_putstr_fd(char *s, int fd)
 {
 	if (s == NULL)
 	{
+		ft_putstr_fd("(null)", 1);
 		return ;
 	}
 	while (*s != '\0')
@@ -41,8 +43,11 @@ char	*ft_strdup(const char *s1)
 	int		len;
 	char	*str;
 
-	len = ft_strlen(s1);
-	str = (char *)malloc(len + 1);
+	len = 0;
+	if (s1)
+	  len = ft_strlen(s1);
+	if (!(str = (char *)malloc(len + 1)))
+		return NULL;
 	if (str == NULL)
 		return (NULL);
 	str[len] = '\0';

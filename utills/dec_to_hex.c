@@ -62,6 +62,8 @@ char	*dec_to_hex(size_t nb)
   char *str;
 
   i = 0;
+  if (!nb)
+    return (ft_strdup("0"));
   len = dec_to_hex_length(nb);
   if(!(buf = malloc (sizeof(size_t)* len)))
     return (NULL);

@@ -59,6 +59,11 @@ void ft_print_max_s(t_result *result)
 {
   int m;
 
+  if (result->value == NULL)
+    {
+      ft_putstr_fd(NULL , 1);
+      return ;
+    }
   m = result->max_characters;
   //  printf("\n*%d\n", m);
   while (*result->value && m--)
@@ -172,11 +177,13 @@ int ft_printf(char *str, ...)
     va_end(alist);
     return (g_return);
 }
-
+/*
 int main()
 {
-  printf("\na%6.2%a\n");
-  ft_printf("a%6.2%a");
+  //printf("\n*%x*\n", 0);
+  //printf("a%xa", 0);
+  ft_printf("\na%da", 0);
   //printf("\n%*ca", -40, 'Z');
  return (0);
 }
+*/
