@@ -42,6 +42,8 @@ intreptor_f_pointer which_intreptor (t_format *holder)
         fp = x_intrepert;
     else if (holder->specifier == 'c' || holder->specifier == '%')
       fp = c_per_interpret;
+    else if (holder->specifier == 's')
+      fp = s_interpret;
     return (fp);
 }
 
@@ -68,18 +70,15 @@ void r_debugger(char *str, ...)
 	va_start(alist, str);
 	holder = intreptor(str, alist);
 	ft_putstr_fd(holder->value, 1);
-  ft_putchar_fd(holder->data->s_v, 1);
+	//ft_putchar_fd(holder->data->s_v, 1);
 	va_end(alist);
 }
 /*
 int main()
 {
-  int *p;
-  int x = 4;
-
-  p = &x;
-  r_debugger("%c\n", 'Z');
+  r_debugger("%s\n", "ok cool");
   //printf("\n%c\n", 'Z');
   return (0);
 }
+
 */

@@ -126,31 +126,26 @@ void	value_get(t_format *holder, va_list vlist)
 {
   char *tmp;
   
-  if (holder->specifier != '%' && holder->specifier != '@')
+  if (holder->specifier == 's')
+    holder->value = ft_strdup(va_arg(vlist, char *));
+  else if (holder->specifier == 'c')
+    holder->s_v = va_arg(vlist, int);
+  else if (holder->specifier == '%')
+      holder->s_v = '%';
+  else if (holder->specifier == 'd' || holder->specifier == 'i')
+    holder->value = ft_ltoa(va_arg(vlist, int));
+  else if (holder->specifier == 'x' || holder->specifier == 'X'
+	   || holder->specifier == 'p')
     {
-      if (holder->specifier == 's')
-	holder->value = ft_strdup(va_arg(vlist, char *));
-      else if (holder->specifier == 'c')
-	holder->s_v = va_arg(vlist, int);
-      else if (holder->specifier == '%')
-	  {
-		holder->s_v = '%';
-		printf("ok");
-	  }
-      else if (holder->specifier == 'd' || holder->specifier == 'i')
-	holder->value = ft_ltoa(va_arg(vlist, int));
-      else if (holder->specifier == 'x' || holder->specifier == 'X'
-	       || holder->specifier == 'p')
-	{
-	  holder->value = dec_to_hex(va_arg(vlist, long));
-	  tmp = holder->value;
-	  holder->value = ft_strjoin("0x", holder->value);
-	  free(tmp);
-	}
-      else
-	holder->value = ft_ltoa(va_arg(vlist, unsigned int));
+      holder->value = dec_to_hex(va_arg(vlist, long));
+      tmp = holder->value;
+      holder->value = ft_strjoin("0x", holder->value);
+      free(tmp);
     }
+  else
+    holder->value = ft_ltoa(va_arg(vlist, unsigned int));
 }
+
 
 /*
 ** the function to get the the data
@@ -189,21 +184,16 @@ void debugger(char *str, ...)
 	ft_putnbr_fd(holder->zero ,1);
 	ft_putchar_fd('\n', 1);
 	*/
-	printf("%c", holder->s_v);
+	printf("%s", holder->value);
 	
 	va_end(alist);
 }
 
-
+/*
 int main()
 {
-	int *x;
-	int j;
-
-	j = 42;
-	x = &j;
- 
-  debugger("%-42%\n");
-  //printf("\n%c", 'k');
+  debugger("%-42s\n", "ok cool");
   return (0);
 }
+
+*/

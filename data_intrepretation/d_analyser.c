@@ -32,7 +32,7 @@ void	idk_calculator (t_format *holder, t_result *result, int size)
       && holder->field_width > size)
 	result->zeros = holder->field_width - size;
       else if (ft_abs(holder->field_width) > size)
-	        result->spaces = ft_abs(holder->field_width) - result->pr_anl - size;
+	result->spaces = ft_abs(holder->field_width) - result->pr_anl - size;
   }
   else
   {
