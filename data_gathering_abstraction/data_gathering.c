@@ -12,7 +12,7 @@ char specifier_extractor(char *s)
 	{
 		if (*s == 'c' || *s == 's' || *s == 'p' ||
 			   *s == 'd' || *s == 'i' || *s == 'u' ||
-			   *s == 'x' || *s == 'X')
+			   *s == 'x' || *s == 'X' || *s == '%')
 		{
 			return (*s);
 		}
@@ -133,7 +133,10 @@ void	value_get(t_format *holder, va_list vlist)
       else if (holder->specifier == 'c')
 	holder->s_v = va_arg(vlist, int);
       else if (holder->specifier == '%')
-	holder->s_v = '%';
+	  {
+		holder->s_v = '%';
+		printf("ok");
+	  }
       else if (holder->specifier == 'd' || holder->specifier == 'i')
 	holder->value = ft_ltoa(va_arg(vlist, int));
       else if (holder->specifier == 'x' || holder->specifier == 'X'
@@ -185,11 +188,9 @@ void debugger(char *str, ...)
 	ft_putchar_fd('\n', 1);
 	ft_putnbr_fd(holder->zero ,1);
 	ft_putchar_fd('\n', 1);
-	
-	ft_putstr_fd(holder->value, 1);
-	ft_putchar_fd(holder->s_v, 1);
 	*/
-	printf("fw: %d -: %d", holder->field_width, holder->minus);
+	printf("%c", holder->s_v);
+	
 	va_end(alist);
 }
 
@@ -202,8 +203,7 @@ int main()
 	j = 42;
 	x = &j;
  
-  debugger("%-42c\n", 'k');
+  debugger("%-42%\n");
   //printf("\n%c", 'k');
   return (0);
 }
-

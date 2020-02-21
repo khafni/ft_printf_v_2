@@ -94,7 +94,6 @@ void print_result(t_result *result)
     }
     else if (!result->neg && result->minus)
     {
-      printf("iiiiiighhhhtttt");
         p_zeros(result);
         p_value(result);
         p_spaces(result);
@@ -163,9 +162,8 @@ int ft_printf(char *str, ...)
 int main()
 {
   
-  ft_printf("\na%-21da", 42);
-  printf("\na%-21da", 42);
+  ft_printf("\na%-21%a");
+  printf("\na%-21%a");
   //printf("\n%*ca", -40, 'Z');
  return (0);
-}
-*/
+}*/
