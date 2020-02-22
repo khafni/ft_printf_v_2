@@ -103,7 +103,7 @@ void field_width_getter(char *format, t_format *holder, va_list vlist)
 
 void precision_getter(char *format, t_format *holder, va_list vlist)
 {
-	while (*format)
+	while (*format && *format != holder->specifier)
 	{
 		if (*format == '.')
 		{
