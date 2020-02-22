@@ -58,18 +58,15 @@ void    p_num(t_result *result)
 void ft_print_max_s(t_result *result)
 {
   int m;
+  int i;
 
-   if (!result->value)
-    {
-      ft_putstr_fd(NULL , 1);
-      return ;
-    }
+  i = 0;
   m = result->max_characters;
   //  printf("\n*%d\n", m);
-  while (*result->value && m--)
+  while (i < m)
     {
-      ft_putchar_fd(*result->value, 1);
-  	result->value++;
+      ft_putchar_fd(result->value[i], 1);
+  	  i++;
     }
 }
 
@@ -130,9 +127,9 @@ int ds_or_not (t_result *result)
 {
   if (result->data->specifier == 'c' || result->data->specifier == '%')
     return (1);
-  else
+  else if (result->value != NULL)
     return (ft_strlen(result->value));
-
+  return (0);
 }
 int g_parser(va_list alist, char **str_ptr)
 {
@@ -181,10 +178,7 @@ int ft_printf(char *str, ...)
 /*
 int main()
 {
-  //printf("\n*%x*\n", 0);
-  //printf("a%xa", 0);
-  ft_printf("\na%sa", NULL);
-  //printf("\n%*ca", -40, 'Z');
+ ft_printf("*%s*\n", "ok");
  return (0);
 }
 */

@@ -70,7 +70,7 @@ void flags_filler(char *str, t_format *format)
 void field_width_getter(char *format, t_format *holder, va_list vlist)
 {
 	format++;
-	while (*format && *format != '.')
+	while (*format && *format != '.' && *format != holder->specifier)
 	{
 		while (*format == '0')
 		{
@@ -122,12 +122,21 @@ void precision_getter(char *format, t_format *holder, va_list vlist)
 		format++;
 	}
 }
+char * s_transform_n_sn (char *p)
+{
+	if (!p)
+		p = ft_strdup("(null)");
+	return (p);
+}
 void	value_get(t_format *holder, va_list vlist)
 {
   char *tmp;
   
   if (holder->specifier == 's')
+  {
     holder->value = ft_strdup(va_arg(vlist, char *));
+	holder->value = s_transform_n_sn(holder->value);
+  }
   else if (holder->specifier == 'c')
     holder->s_v = va_arg(vlist, int);
   else if (holder->specifier == '%')
@@ -190,9 +199,10 @@ void debugger(char *str, ...)
 	va_end(alist);
 }
 
-
+/*
 int main()
 {
-  debugger("%s\n", NULL);
-  return (0);
+debugger("%s*\n", NULL);
+return (0);
 }
+*/
