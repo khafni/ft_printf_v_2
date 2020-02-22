@@ -54,10 +54,9 @@ void flags_filler(char *str, t_format *format)
 		format->zero = 1;
 	while (*str)
 	{
-		if (*str == '-')
+		if (*str == '-' || format->field_width < 0)
 		{
 			format->minus += 1;
-			
 		}
 		else if (*str == '+')
 			format->plus += 1;
