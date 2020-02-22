@@ -6,8 +6,9 @@
 
 int main()
 {
-  int i = ft_printf("*%*.*s*\n",5, 2 ,"ABC");
-  int j = printf("*%*.*s*" ,5, 2, "ABC");
+  int i = ft_printf("*%*.2s*", -15, "ABC");
+  putchar('\n');
+  int j = printf("*%*.2s*", -15, "ABC");
   printf("\nmy return : %d \ntheir return : %d", i, j);
   //printf("*%*.*s*" ,7, 2, "ABC");
   //printf("*%s*", "ok");

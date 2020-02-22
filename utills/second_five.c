@@ -4,7 +4,7 @@ void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
 	g_return = g_return + 1;
-	printf("M");
+	//printf("\n###### M : @%c@######\n", c);
 }
 
 void	ft_putstr_fd(char *s, int fd)
@@ -19,7 +19,7 @@ void	ft_putstr_fd(char *s, int fd)
 		ft_putchar_fd(*s, fd);
 		s++;
 	}
-	
+
 }
 
 char	*ft_strchr(const char *s, int c)

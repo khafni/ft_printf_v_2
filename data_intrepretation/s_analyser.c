@@ -23,8 +23,10 @@ void	s_interpret(t_format *holder, t_result *result)
     size = ft_strlen(result->value);
   s_precision_handler(holder, result, size);
   if (holder->minus)
+  {
     result->minus = 1;
+  }
   if (ft_abs(holder->field_width) > result->max_characters)
-    result->spaces = holder->field_width - result->max_characters;
+    result->spaces = ft_abs(holder->field_width) - result->max_characters;
   
 }

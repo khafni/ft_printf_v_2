@@ -55,7 +55,10 @@ void flags_filler(char *str, t_format *format)
 	while (*str)
 	{
 		if (*str == '-')
+		{
 			format->minus += 1;
+			
+		}
 		else if (*str == '+')
 			format->plus += 1;
 		else if (*str == '#')
@@ -155,7 +158,6 @@ void	value_get(t_format *holder, va_list vlist)
   else
     holder->value = ft_ltoa(va_arg(vlist, unsigned int));
 }
-
 
 /*
 ** the function to get the the data
