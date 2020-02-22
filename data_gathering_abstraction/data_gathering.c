@@ -24,6 +24,8 @@ char specifier_extractor(char *s)
 void existence_analyser (char *str, t_format *holder)
 {
 	str++;
+	while (*str == '0' && *(str + 1) == '0')
+		str++;
 	if (*str == '0' && ft_strchr("123456789.*", *(str + 1)))
 		holder->flags_existence |= FW_ZERO;
 }
