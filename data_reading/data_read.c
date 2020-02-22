@@ -135,17 +135,17 @@ int g_parser(va_list alist, char **str_ptr)
 {
     int l;
     int len_r;
-    char *pt;
+    // char *pt;
     t_result *result;
 
     len_r = 0;
-    pt = extractor(*str_ptr);
+    // pt = extractor(*str_ptr);
     result = intreptor(*str_ptr, alist);
     print_result(result);
     l = format_length(*str_ptr) + 1;
     len_r = result->spaces + result->zeros + ds_or_not(result);
     *str_ptr += l;
-    free(pt);
+    // free(pt);
     result_destroy(result);
     return (len_r);
 }
@@ -153,21 +153,18 @@ int g_parser(va_list alist, char **str_ptr)
 int ft_printf(char *str, ...)
 {
     va_list alist;
-    int l;
 
     g_return = 0;
-    l = 0;
     va_start(alist, str);
     while (*str)
     {
         if (*str == '%')
         {
-                l += g_parser(alist, &str);
+          g_parser(alist, &str);
         }
         else
         {
             ft_putchar_fd(*str, 1);
-            l++;
         }
         str++;
     }
@@ -182,3 +179,16 @@ int main()
  return (0);
 }
 */
+
+
+int main()
+{
+  //int i = ft_printf("TEST TEST 0000%%%*.*s%%%-15.8dTEST%-15.8u0000000\t%%%15%%.3%", 7,5, "ABC",15,0);
+  //putchar('\n');
+  //int j = printf("TEST TEST 0000%%%*.*s%%%-15.8dTEST%-15.8u0000000\t%%%15%%.3%", 7,5, "ABC",15,0);
+  //int j = ft_printf("TEST TEST 0000%%%*.*s", 7,5, "ABC");
+  ft_printf("|%d%*.*d%d|\n",42, 1, 1, 21, 1337);
+  printf("|%d%*.*d%d|\n", 42, 1, 1, 21, 1337);
+  //ft_printf("TEST TEST 0000%%%*.*s", 7,5, "ABC");
+  return (0);
+}

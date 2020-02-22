@@ -172,19 +172,19 @@ t_format *get_data (char *f_sstr, va_list vlist)
 	precision_getter(f_sstr, container, vlist);
 	flags_filler (f_sstr, container);
 	value_get(container, vlist);
-
+	//printf("%s\n", container->value);
 	return (container);
 
 }
 
-void debugger(char *str, ...)
+/*void debugger(char *str, ...)
 {
 	va_list alist;
 	t_format *holder;
 
 	va_start(alist, str);
 	holder = get_data(str, alist);
-	/*
+	
 	ft_putchar_fd(holder->specifier, 1);
 	ft_putchar_fd('\n', 1);
 	ft_putnbr_fd(holder->field_width ,1);
@@ -195,10 +195,10 @@ void debugger(char *str, ...)
 	ft_putchar_fd('\n', 1);
 	ft_putnbr_fd(holder->zero ,1);
 	ft_putchar_fd('\n', 1);
-	*/
+	
 	ft_putstr_fd(holder->value, 1);
 	va_end(alist);
-}
+}*/
 
 /*
 int main()
