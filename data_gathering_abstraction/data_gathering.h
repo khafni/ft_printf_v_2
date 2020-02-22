@@ -2,6 +2,8 @@
 #define DATA_GATHERING_H
 #include <stdio.h>
 #include <stdarg.h>
+#include <stdlib.h>
+#include "../utills/utills.h"
 
 #define FW_ZERO 1
 #define FIELD_WIDTH 2
