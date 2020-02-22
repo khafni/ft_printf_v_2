@@ -31,6 +31,8 @@ void    p_num(t_result *result)
 {
   long n;
 
+  if (!ft_ltoi(result->value) && (result->data->flags_existence & PRECISION))
+    return ;
   if (!(result->data->specifier == 'd' || result->data->specifier == 'i'))
     {
       ft_putstr_fd(result->value, 1);
@@ -41,15 +43,15 @@ void    p_num(t_result *result)
   {
     n = 2147483648;
   }
-  if (!ft_ltoi(result->value) && (result->data->flags_existence & PRECISION))
-    return ;
+  //if (!ft_ltoi(result->value) && (result->data->flags_existence & PRECISION))
+    //return ;
   else
     {
-       if (result->neg && (ft_ltoi(result->value) != MIN_INTEGER))
-	 ft_putnbr_long(n);
+      if (result->neg && (ft_ltoi(result->value) != MIN_INTEGER))
+	        ft_putnbr_long(n);
         else if (ft_ltoi(result->value) == MIN_INTEGER)
-	  ft_putnbr_long(2147483648);
-	else
+	        ft_putnbr_long(2147483648);
+	        else
 	  ft_putstr_fd(result->value, 1);
     }
   (void)n;
@@ -62,7 +64,6 @@ void ft_print_max_s(t_result *result)
 
   i = 0;
   m = result->max_characters;
-  //  printf("\n*%d\n", m);
   while (i < m)
     {
       ft_putchar_fd(result->value[i], 1);
@@ -72,16 +73,18 @@ void ft_print_max_s(t_result *result)
 
 void  p_value(t_result *result)
 {
-    if (result->data->specifier == 'd' || result->data->specifier == 'i')
-    p_num(result);
-  else if (result->data->specifier == 'c')
+    //if (result->data->specifier == 'd' || result->data->specifier == 'i')
+      //p_num(result);
+  if (result->data->specifier == 'c')
     ft_putchar_fd(result->data->s_v, 1);
   else if (result->data->specifier == '%')
     ft_putchar_fd('%', 1);
   else if (result->data->specifier == 's')
     ft_print_max_s(result);
   else
-    ft_putstr_fd(result->value, 1);
+    p_num(result);
+  //else
+    //ft_putstr_fd(result->value, 1);
   }
 
 void unsigned_minus_removed (t_result *result)
@@ -135,17 +138,18 @@ int g_parser(va_list alist, char **str_ptr)
 {
     int l;
     int len_r;
-    // char *pt;
+    //char *pt;
     t_result *result;
 
     len_r = 0;
-    // pt = extractor(*str_ptr);
+    //pt = extractor(*str_ptr);
     result = intreptor(*str_ptr, alist);
+    //result = intreptor(pt, alist);
     print_result(result);
     l = format_length(*str_ptr) + 1;
     len_r = result->spaces + result->zeros + ds_or_not(result);
     *str_ptr += l;
-    // free(pt);
+    //free(pt);
     result_destroy(result);
     return (len_r);
 }

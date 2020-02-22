@@ -52,7 +52,7 @@ void flags_filler(char *str, t_format *format)
 	str++;
 	if (*str == '0')
 		format->zero = 1;
-	while (*str)
+	while (*str && *str != format->specifier)
 	{
 		if (*str == '-' || format->field_width < 0)
 		{
@@ -146,10 +146,10 @@ void	value_get(t_format *holder, va_list vlist)
   else if (holder->specifier == 'd' || holder->specifier == 'i')
     holder->value = ft_ltoa(va_arg(vlist, int));
   else if (holder->specifier == 'x' || holder->specifier == 'X')
-    holder->value = dec_to_hex(va_arg(vlist, long));
+    holder->value = dec_to_hex(va_arg(vlist, unsigned int ));
   else if (holder->specifier == 'p')
     {
-      holder->value = dec_to_hex(va_arg(vlist, long));
+      holder->value = dec_to_hex(va_arg(vlist, size_t));
       tmp = holder->value;
       holder->value = ft_strjoin("0x", holder->value);
       free(tmp);
