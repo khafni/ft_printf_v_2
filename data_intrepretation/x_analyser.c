@@ -15,14 +15,22 @@ void	x_precision_handler(t_format *holder, t_result *result, int size)
 
 void	x_zero_case_handler (t_format *holder, int *size)
 {
-  if (holder->flags_existence & PRECISION)
+    if (!hex_to_dec(holder->value) && holder->specifier != 'p')
+  if (holder->flags_existence & PRECISION && holder->specifier != 'p'
+  && !hex_to_dec(holder->value))
     *size = 0;
 }
 
+void	p_zero_case_handler (t_format *holder, int *size)
+{
+  if (((holder->value[2] == '0')) && holder->flags_existence & PRECISION
+  && holder->specifier == 'p')
+    *size = 2;
+}
 void	x_idk_calculator (t_format *holder, t_result *result, int size)
 {
-  if (!hex_to_dec(holder->value))
-    x_zero_case_handler(holder, &size);
+  x_zero_case_handler(holder, &size);
+  p_zero_case_handler(holder, &size);
   x_precision_handler(holder, result, size);
   if (holder->flags_existence & FW_ZERO)
   {

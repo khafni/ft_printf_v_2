@@ -27,12 +27,36 @@ void p_zeros(t_result *result)
         i++;
     }
 }
+int check_if_null(t_result *result)
+{
+  if (result->data->specifier == 'x' || result->data->specifier == 'X')
+  {
+    if (!hex_to_dec(result->value) && (result->data->flags_existence & PRECISION))
+    {
+      return (1);
+    }
+  }
+  else if(result->data->specifier == 'p')
+  {
+       if (((result->value[2] == '0')) && result->data->flags_existence & PRECISION)
+       {
+        ft_putstr_fd("0x", 1);
+        return (1);
+       }
+  }
+  else if (!ft_ltoi(result->value) && (result->data->flags_existence & PRECISION))
+      return (1);
+  return (0);
+}
+
 void    p_num(t_result *result)
 {
   long n;
 
-  if (!ft_ltoi(result->value) && (result->data->flags_existence & PRECISION))
-    return ;
+  if (check_if_null(result))
+  {
+      return ;
+  }
   if (!(result->data->specifier == 'd' || result->data->specifier == 'i'))
     {
       ft_putstr_fd(result->value, 1);
@@ -146,6 +170,7 @@ int g_parser(va_list alist, char **str_ptr)
     result = intreptor(*str_ptr, alist);
     //result = intreptor(pt, alist);
     print_result(result);
+    //ft_putstr_fd(result->value, 1);
     l = format_length(*str_ptr) + 1;
     len_r = result->spaces + result->zeros + ds_or_not(result);
     *str_ptr += l;
@@ -194,6 +219,17 @@ int main()
   ft_printf("|%d%*.*d%d|\n",42, 1, 1, 21, 1337);
   printf("|%d%*.*d%d|\n", 42, 1, 1, 21, 1337);
   //ft_printf("TEST TEST 0000%%%*.*s", 7,5, "ABC");
+  return (0);
+}
+*/
+
+/*
+int main()
+{
+
+  ft_printf("*%.15x*\n", -1);
+  printf("*%.15x*", -1);
+  
   return (0);
 }
 */

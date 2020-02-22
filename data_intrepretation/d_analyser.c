@@ -2,7 +2,9 @@
 void	precision_handler(t_format *holder, t_result *result, int size)
 {
   if (result->neg)
+  {
     size--;
+  }
   if (holder->precision > 0 && holder->precision > size)
   {
     result->pr_anl = holder->precision - size;
@@ -46,7 +48,7 @@ void  d_intrepert(t_format *holder, t_result *result)
     result->data = holder;
     if (holder->minus)
         result->minus = 1;
-    if (ft_atoi(holder->value) < 0)
+    if (ft_ltoi(holder->value) < 0)
         result->neg = 1;
     if (holder->field_width < 0)
         result->minus = 1;

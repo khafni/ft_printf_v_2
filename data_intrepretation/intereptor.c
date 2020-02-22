@@ -70,15 +70,13 @@ void r_debugger(char *str, ...)
 	va_start(alist, str);
 	holder = intreptor(str, alist);
 	ft_putstr_fd(holder->value, 1);
-	//ft_putchar_fd(holder->data->s_v, 1);
 	va_end(alist);
 }
 /*
 int main()
 {
-  r_debugger("%s\n", "ok cool");
-  //printf("\n%c\n", 'Z');
+  r_debugger("%.p\n", (void*)3);
+  putchar('\n');
+  printf("%.p", (void*)3);
   return (0);
-}
-
-*/
+}*/
