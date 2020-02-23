@@ -3,11 +3,8 @@
 
 int main()
 {
-/*
-  ft_printf("*%.15u*\n", -1);
-  printf("*%.15u*", -1);
-*/
-  ft_printf("%9.p\n", (void*)9);
-  printf("%9.p", (void*)9);  
+  ft_printf("|%0*.%|", -5);
+  putchar('\n');
+  printf("|%0*.%|", -5);
   return (0);
 }

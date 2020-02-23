@@ -7,12 +7,10 @@ void  per_interpret(t_format *holder, t_result *result)
         if (holder->field_width > 1 && !holder->minus)
 	        result->zeros = holder->field_width - 1;
         else if (holder->field_width < -1 || holder->minus)
-            result->spaces = ft_abs(holder->field_width);
+            result->spaces = ft_abs(holder->field_width) - 1;
     }
     else
-    {
         result->spaces = ft_abs(holder->field_width) - 1;
-    }
 }
 void  c_per_interpret(t_format *holder, t_result *result)
 {

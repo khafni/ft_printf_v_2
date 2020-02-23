@@ -1,6 +1,7 @@
 .PHONY: clean all re fclean
 NAME = libftprintf.a
-SRCS =  data_gathering_abstraction/data_gathering.c\
+SRCS =  data_gathering_abstraction/data_gathering_p_1.c\
+data_gathering_abstraction/data_gathering_p_2.c\
 data_intrepretation/intereptor.c\
 data_intrepretation/d_analyser.c\
 data_intrepretation/x_analyser.c\
@@ -14,7 +15,8 @@ utills/fourth_five.c\
 utills/dec_to_hex.c\
 utills/hex_to_dec.c\
 
-OBJS = data_gathering.o\
+OBJS = data_gathering_p_1.o\
+data_gathering_p_2.o\
 intereptor.o\
 d_analyser.o\
 x_analyser.o\

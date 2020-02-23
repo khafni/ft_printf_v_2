@@ -6,13 +6,15 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 00:34:43 by khafni            #+#    #+#             */
-/*   Updated: 2020/02/23 00:34:45 by khafni           ###   ########.fr       */
+/*   Updated: 2020/02/23 01:11:08 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 ** function that gets the precision value
 */
+
+#include "data_gathering.h"
 
 void	precision_getter(char *format, t_format *holder, va_list vlist)
 {

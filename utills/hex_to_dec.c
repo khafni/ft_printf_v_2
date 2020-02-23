@@ -29,7 +29,7 @@ size_t    hex_to_dec(char *nb)
     {
         if (*nb >= '0' && *nb <= '9')
             dec_value += (*nb - 48) * ft_pow(16, i);
-        else if (*nb >= 'a' && *nb <= 'f')
+        else if ((*nb >= 'a' && *nb <= 'f') || (*nb >= 'A' && *nb <= 'F'))
             dec_value += (*nb - 87) * ft_pow(16, i);
         nb--;
         i++;

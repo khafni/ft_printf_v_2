@@ -56,7 +56,7 @@ void	ft_to_lower (char *str)
   while(*str)
     {
       if (*str >= 97 && *str <= 122)
-	*str -= 32;
+		*str -= 32;
       str++;
     }
 }

@@ -6,9 +6,11 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 00:24:36 by khafni            #+#    #+#             */
-/*   Updated: 2020/02/23 00:47:39 by khafni           ###   ########.fr       */
+/*   Updated: 2020/02/23 01:11:20 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "data_gathering.h"
 
 char			specifier_extractor(char *s)
 {

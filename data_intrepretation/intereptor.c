@@ -21,9 +21,9 @@ t_result *result_init(void)
 void    result_destroy(t_result *result)
 {
 
-  if (!result->value)
+  if (result->value)
     free(result->value);
-  if (!result->data->value)
+  if (result->data->value)
     free(result->data->value);
   free(result->data);
   free(result);
@@ -72,6 +72,7 @@ void r_debugger(char *str, ...)
 	ft_putstr_fd(holder->value, 1);
 	va_end(alist);
 }
+
 /*
 int main()
 {

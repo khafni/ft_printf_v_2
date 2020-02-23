@@ -36,9 +36,12 @@ typedef	struct
 */
 
 char specifier_extractor(char *s);
+void			existence_analyser(char *str, t_format *holder);
 t_format *data_init(void);
 void flags_filler(char *str, t_format *format);
 void field_width_getter(char *format, t_format *holder, va_list vlist);
 void precision_getter(char *format, t_format *holder, va_list vlist);
+char	*s_transform_n_sn(char *p);
+void	value_get(t_format *holder, va_list vlist);
 t_format *get_data (char *f_sstr, va_list vlist);
 #endif
