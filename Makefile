@@ -2,12 +2,14 @@
 NAME = libftprintf.a
 SRCS =  data_gathering_abstraction/data_gathering_p_1.c\
 data_gathering_abstraction/data_gathering_p_2.c\
-data_intrepretation/intereptor.c\
-data_intrepretation/d_analyser.c\
-data_intrepretation/x_analyser.c\
-data_intrepretation/c_per_interpret.c\
-data_intrepretation/s_analyser.c\
-data_reading/data_read.c\
+data_analysis/analyser.c\
+data_analysis/d_analyser.c\
+data_analysis/x_analyser.c\
+data_analysis/c_per_analyser.c\
+data_analysis/s_analyser.c\
+data_printing/data_printing_p_1.c\
+data_printing/data_printing_p_2.c\
+ft_printf.c\
 utills/first_five.c\
 utills/second_five.c\
 utills/third_five.c\
@@ -17,12 +19,14 @@ utills/hex_to_dec.c\
 
 OBJS = data_gathering_p_1.o\
 data_gathering_p_2.o\
-intereptor.o\
+analyser.o\
 d_analyser.o\
 x_analyser.o\
-c_per_interpret.o\
+c_per_analyser.o\
 s_analyser.o\
-data_read.o\
+data_printing_p_1.o\
+data_printing_p_2.o\
+ft_printf.o\
 first_five.o\
 second_five.o\
 third_five.o\
