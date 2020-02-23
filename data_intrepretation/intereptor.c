@@ -60,24 +60,3 @@ t_result    *intreptor(char *str, va_list alist)
     fp(holder, result);
     return (result);
 }
-
-
-void r_debugger(char *str, ...)
-{
-	va_list alist;
-	t_result *holder;
-
-	va_start(alist, str);
-	holder = intreptor(str, alist);
-	ft_putstr_fd(holder->value, 1);
-	va_end(alist);
-}
-
-/*
-int main()
-{
-  r_debugger("%.p\n", (void*)3);
-  putchar('\n');
-  printf("%.p", (void*)3);
-  return (0);
-}*/

@@ -64,19 +64,15 @@ void			flags_filler(char *str, t_format *format)
 	while (*str && *str != format->specifier)
 	{
 		if (*str == '-' || format->field_width < 0)
-		{
 			format->minus += 1;
-		}
-		else if (*str == '+')
-			format->plus += 1;
-		else if (*str == '#')
-			format->hashtag += 1;
 		str++;
 	}
 }
 
 /*
-**	function that gets the field width value
+** this function does not just get the field_width value but also stores 
+** the state of existence of the fieldwidth asterisk using the bitwise or
+** operator and storing the state of existence in an int
 */
 
 void			field_width_getter(char *format,

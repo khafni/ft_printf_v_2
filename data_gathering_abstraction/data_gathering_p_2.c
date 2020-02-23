@@ -10,12 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** function that gets the precision value
-*/
 
 #include "data_gathering.h"
 
+/*
+** the function also stores the state of existence of the precision
+** point and the precision astersik
+*/
 void	precision_getter(char *format, t_format *holder, va_list vlist)
 {
 	while (*format && *format != holder->specifier)
@@ -40,6 +41,12 @@ void	precision_getter(char *format, t_format *holder, va_list vlist)
 	}
 }
 
+/*
+** this function exists because when the original printf is given a null pointer
+** as a value for the s specifier , it prints the string "(null)" so i chose 
+** to my function fall in that case it gather the string "(null)" as value for
+** the s specifier instead of a null pointer
+*/ 
 char	*s_transform_n_sn(char *p)
 {
 	if (!p)
@@ -76,7 +83,7 @@ void	value_get(t_format *holder, va_list vlist)
 }
 
 /*
-** the function to get the the data
+** this is the only function that is passed to the other interfaces
 */
 
 t_format	*get_data(char *f_sstr, va_list vlist)
