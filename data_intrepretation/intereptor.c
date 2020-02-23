@@ -29,9 +29,9 @@ void    result_destroy(t_result *result)
   free(result);
 }
 
-intreptor_f_pointer which_intreptor (t_format *holder)
+t_intr_f_pt which_intreptor (t_format *holder)
 {
-    intreptor_f_pointer fp;
+    t_intr_f_pt fp;
 
     fp = NULL;
     if (holder->specifier == 'd' || holder->specifier == 'i' 
@@ -51,7 +51,7 @@ t_result    *intreptor(char *str, va_list alist)
 {
     t_format    *holder;
     t_result    *result;
-    intreptor_f_pointer fp;
+    t_intr_f_pt fp;
 
    
     holder = get_data(str, alist);

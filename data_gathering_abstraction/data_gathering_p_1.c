@@ -6,13 +6,14 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 00:24:36 by khafni            #+#    #+#             */
-/*   Updated: 2020/02/23 01:11:20 by khafni           ###   ########.fr       */
+/*   Updated: 2020/02/23 17:26:29 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data_gathering.h"
 
-char			specifier_extractor(char *s)
+char
+	specifier_extractor(char *s)
 {
 	s++;
 	while (*s)
@@ -28,7 +29,8 @@ char			specifier_extractor(char *s)
 	return ('@');
 }
 
-void			existence_analyser(char *str, t_format *holder)
+void
+	existence_analyser(char *str, t_format *holder)
 {
 	str++;
 	while (*str == '0' && *(str + 1) == '0')
@@ -37,7 +39,8 @@ void			existence_analyser(char *str, t_format *holder)
 		holder->flags_existence |= FW_ZERO;
 }
 
-t_format		*data_init(void)
+t_format
+	*data_init(void)
 {
 	t_format *format;
 
@@ -56,7 +59,8 @@ t_format		*data_init(void)
 	return (format);
 }
 
-void			flags_filler(char *str, t_format *format)
+void
+	flags_filler(char *str, t_format *format)
 {
 	str++;
 	if (*str == '0')
@@ -70,12 +74,13 @@ void			flags_filler(char *str, t_format *format)
 }
 
 /*
-** this function does not just get the field_width value but also stores 
+** this function does not just get the field_width value but also stores
 ** the state of existence of the fieldwidth asterisk using the bitwise or
 ** operator and storing the state of existence in an int
 */
 
-void			field_width_getter(char *format,
+void
+	field_width_getter(char *format,
 t_format *holder, va_list vlist)
 {
 	format++;

@@ -1,4 +1,5 @@
 #include "intrepretor.h"
+
 void	precision_handler(t_format *holder, t_result *result, int size)
 {
   if (result->neg)
