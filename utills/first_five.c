@@ -6,13 +6,14 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 02:24:27 by khafni            #+#    #+#             */
-/*   Updated: 2020/02/24 02:24:43 by khafni           ###   ########.fr       */
+/*   Updated: 2020/02/24 02:34:55 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utills.h"
 
-int ft_abs(int nb)
+int
+	ft_abs(int nb)
 {
 	int n;
 
@@ -22,11 +23,12 @@ int ft_abs(int nb)
 	return (n);
 }
 
-int ft_atoi(const char *str)
+int
+	ft_atoi(const char *str)
 {
-	int i;
-	unsigned long nb;
-	int neg;
+	int				i;
+	unsigned long	nb;
+	int				neg;
 
 	i = 0;
 	nb = 0;
@@ -47,14 +49,16 @@ int ft_atoi(const char *str)
 	return (neg * nb);
 }
 
-int ft_isdigit(int c)
+int
+	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
 }
 
-long digitlen(long n)
+long
+	digitlen(long n)
 {
 	long i;
 
@@ -71,7 +75,8 @@ long digitlen(long n)
 	return (i);
 }
 
-char *ft_ltoa(long n)
+char
+	*ft_ltoa(long n)
 {
 	long m;
 	char *str;

@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   third_five.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/24 02:37:37 by khafni            #+#    #+#             */
+/*   Updated: 2020/02/24 02:39:17 by khafni           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "utills.h"
 
-size_t	ft_strlen(const char *s)
+size_t
+	ft_strlen(const char *s)
 {
 	int i;
 
@@ -13,7 +25,8 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void
+	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t			i;
 	const char		*s;
@@ -35,7 +48,9 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	}
 	return (dst);
 }
-void	ft_putnbr_fd(int n, int fd)
+
+void
+	ft_putnbr_fd(int n, int fd)
 {
 	long nb;
 
@@ -56,7 +71,8 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 }
 
-void	ft_putnbr_long(long n)
+void
+	ft_putnbr_long(long n)
 {
 	long nb;
 

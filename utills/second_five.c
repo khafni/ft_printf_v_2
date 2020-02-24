@@ -1,12 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   second_five.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/24 02:35:13 by khafni            #+#    #+#             */
+/*   Updated: 2020/02/24 02:37:18 by khafni           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "utills.h"
 
-void	ft_putchar_fd(char c, int fd)
+void
+	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
 	g_return = g_return + 1;
 }
 
-void	ft_putstr_fd(char *s, int fd)
+void
+	ft_putstr_fd(char *s, int fd)
 {
 	if (s == NULL)
 	{
@@ -18,10 +32,10 @@ void	ft_putstr_fd(char *s, int fd)
 		ft_putchar_fd(*s, fd);
 		s++;
 	}
-
 }
 
-char	*ft_strchr(const char *s, int c)
+char
+	*ft_strchr(const char *s, int c)
 {
 	size_t	i;
 	char	*str;
@@ -39,7 +53,8 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strdup(const char *s1)
+char
+	*ft_strdup(const char *s1)
 {
 	int		len;
 	char	*str;
@@ -48,16 +63,17 @@ char	*ft_strdup(const char *s1)
 	if (!s1)
 		return (NULL);
 	if (s1)
-	  len = ft_strlen(s1);
+		len = ft_strlen(s1);
 	if (!(str = (char *)malloc(len + 1)))
-		return NULL;
+		return (NULL);
 	if (str == NULL)
 		return (NULL);
 	str[len] = '\0';
 	return ((char *)ft_memcpy(str, s1, len));
 }
 
-size_t		ft_strlcpy(char *dst, const char *src, size_t size)
+size_t
+	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t i;
 	size_t j;

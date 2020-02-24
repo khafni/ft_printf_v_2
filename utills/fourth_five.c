@@ -1,14 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fourth_five.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/24 02:40:03 by khafni            #+#    #+#             */
+/*   Updated: 2020/02/24 02:42:02 by khafni           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "utills.h"
 
-int format_length (char *s)
+int
+	format_length(char *s)
 {
 	int length;
 
 	length = 0;
 	s++;
 	while (*s != 'c' && *s != 's' && *s != 'p' &&
-	*s != 'd' && *s != 'i' && *s != 'u' &&
-	*s != 'x' && *s != 'X' && *s != '%' && *s)
+			*s != 'd' && *s != 'i' && *s != 'u' &&
+			*s != 'x' && *s != 'X' && *s != '%' && *s)
 	{
 		length++;
 		s++;
@@ -16,9 +29,10 @@ int format_length (char *s)
 	return (length);
 }
 
-long    ft_ltoi(const char *str)
+long
+	ft_ltoi(const char *str)
 {
-    long			i;
+	long			i;
 	unsigned long	nb;
 	int				neg;
 
@@ -39,17 +53,19 @@ long    ft_ltoi(const char *str)
 	return (neg * nb);
 }
 
-void	ft_to_lower (char *str)
+void
+	ft_to_lower(char *str)
 {
-  while(*str)
-    {
-      if (*str >= 97 && *str <= 122)
-		*str -= 32;
-      str++;
-    }
+	while (*str)
+	{
+		if (*str >= 97 && *str <= 122)
+			*str -= 32;
+		str++;
+	}
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char
+	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	i;
 	char	*str;
