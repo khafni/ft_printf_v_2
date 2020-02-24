@@ -6,7 +6,7 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 00:43:46 by khafni            #+#    #+#             */
-/*   Updated: 2020/02/24 00:46:01 by khafni           ###   ########.fr       */
+/*   Updated: 2020/02/24 04:12:43 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 ** prints the resulted number of spaces from the data analysis
 ** interface
 */
-void	p_spaces(t_result *result);
+int		p_spaces(t_result *result);
 /*
 ** prints the resulted number of zeros from the data analysis
 ** interface
 */
-void	p_zeros(t_result *result);
+int		p_zeros(t_result *result);
 /*
 ** check if the value of a specifier is null or not
 */
@@ -42,12 +42,12 @@ void	ft_print_max_s(t_result *result);
 ** the function that prints the value of a specifier
 ** depending on what specifier it gets
 */
-void	p_value(t_result *result);
+int		p_value(t_result *result);
 /*
 ** function that prints a '-' character when
 ** we have a negative d/i specifier's value
 */
-void	unsigned_minus_removed(t_result *result);
+int		unsigned_minus_removed(t_result *result);
 /*
 ** the main printer function that prints the result of
 ** the data analysis interface depending on if we have

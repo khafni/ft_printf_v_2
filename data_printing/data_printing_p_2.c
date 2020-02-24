@@ -6,13 +6,13 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 00:26:12 by khafni            #+#    #+#             */
-/*   Updated: 2020/02/24 03:25:44 by khafni           ###   ########.fr       */
+/*   Updated: 2020/02/24 03:59:18 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data_printing.h"
 
-void
+int
 	p_value(t_result *result)
 {
 	if (result->data->specifier == 'c')
@@ -23,9 +23,10 @@ void
 		ft_print_max_s(result);
 	else
 		p_num(result);
+	return (1);
 }
 
-void
+int
 	unsigned_minus_removed(t_result *result)
 {
 	char c;
@@ -33,6 +34,7 @@ void
 	c = result->data->specifier;
 	if (c == 'd' || c == 'i')
 		ft_putchar_fd('-', 1);
+	return (1);
 }
 
 void
@@ -40,10 +42,8 @@ void
 {
 	if ((result->neg && result->minus))
 	{
-		unsigned_minus_removed(result);
-		p_zeros(result);
-		p_value(result);
-		p_spaces(result);
+		unsigned_minus_removed(result) && p_zeros(result);
+		p_value(result) && p_spaces(result);
 	}
 	else if (result->neg && !result->minus)
 	{
@@ -60,8 +60,7 @@ void
 	}
 	else
 	{
-		p_spaces(result);
-		p_zeros(result);
+		p_spaces(result) && p_zeros(result);
 		p_value(result);
 	}
 }

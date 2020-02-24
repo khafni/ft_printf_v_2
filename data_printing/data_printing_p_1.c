@@ -6,13 +6,13 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 00:21:39 by khafni            #+#    #+#             */
-/*   Updated: 2020/02/24 03:45:54 by khafni           ###   ########.fr       */
+/*   Updated: 2020/02/24 04:14:58 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data_printing.h"
 
-void
+int
 	p_spaces(t_result *result)
 {
 	int i;
@@ -23,9 +23,10 @@ void
 		ft_putchar_fd(' ', 1);
 		i++;
 	}
+	return (1);
 }
 
-void
+int
 	p_zeros(t_result *result)
 {
 	int i;
@@ -36,6 +37,7 @@ void
 		ft_putchar_fd('0', 1);
 		i++;
 	}
+	return (1);
 }
 
 int
@@ -43,20 +45,21 @@ int
 {
 	if (result->data->specifier == 'x' || result->data->specifier == 'X')
 	{
-		if (!hex_to_dec(result->value) && (result->data->flags_existence & PRECISION))
-		{
+		if (!hex_to_dec(result->value)
+		&& (result->data->flags_existence & PRECISION))
 			return (1);
-		}
 	}
 	else if (result->data->specifier == 'p')
 	{
-		if (((result->value[2] == '0')) && (result->data->flags_existence & PRECISION))
+		if (((result->value[2] == '0'))
+		&& (result->data->flags_existence & PRECISION))
 		{
 			ft_putstr_fd("0x", 1);
 			return (1);
 		}
 	}
-	else if (!ft_ltoi(result->value) && (result->data->flags_existence & PRECISION))
+	else if (!ft_ltoi(result->value)
+	&& (result->data->flags_existence & PRECISION))
 		return (1);
 	return (0);
 }
