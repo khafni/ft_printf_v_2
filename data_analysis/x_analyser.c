@@ -6,7 +6,7 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 22:07:58 by khafni            #+#    #+#             */
-/*   Updated: 2020/02/23 22:48:32 by khafni           ###   ########.fr       */
+/*   Updated: 2020/02/24 03:33:37 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void
 	x_zero_case_handler(t_format *holder, int *size)
 {
 	if (!hex_to_dec(holder->value) && holder->specifier != 'p')
-		if (holder->flags_existence & PRECISION
+		if ((holder->flags_existence & PRECISION)
 		&& holder->specifier != 'p' && !hex_to_dec(holder->value))
 			*size = 0;
 }

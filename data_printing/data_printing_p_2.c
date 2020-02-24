@@ -6,7 +6,7 @@
 /*   By: khafni <khafni@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 00:26:12 by khafni            #+#    #+#             */
-/*   Updated: 2020/02/24 00:42:43 by khafni           ###   ########.fr       */
+/*   Updated: 2020/02/24 03:25:44 by khafni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void
 	char c;
 
 	c = result->data->specifier;
-	if ((c == 'd' || c == 'i') && (result->neg && result->minus))
+	if (c == 'd' || c == 'i')
 		ft_putchar_fd('-', 1);
 }
 
 void
 	print_result(t_result *result)
 {
-	if ((result->neg && result->minus) || (!result->neg && result->minus))
+	if ((result->neg && result->minus))
 	{
 		unsigned_minus_removed(result);
 		p_zeros(result);
@@ -51,6 +51,12 @@ void
 		unsigned_minus_removed(result);
 		p_zeros(result);
 		p_value(result);
+	}
+	else if (!result->neg && result->minus)
+	{
+		p_zeros(result);
+		p_value(result);
+		p_spaces(result);
 	}
 	else
 	{
