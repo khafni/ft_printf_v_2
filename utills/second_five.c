@@ -75,16 +75,3 @@ size_t		ft_strlcpy(char *dst, const char *src, size_t size)
 	}
 	return (j);
 }
-/*
-int main()
-{
-	//char *p1;
-	char *p2;
-
-
-	//p1 = ft_strdup(NULL);
-	p2 = ft_strdup(NULL);
-	ft_putstr_fd(p2, 1);
-	return (0);
-}
-*/

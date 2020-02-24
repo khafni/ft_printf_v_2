@@ -16,18 +16,6 @@ int format_length (char *s)
 	return (length);
 }
 
-char *extractor(char *format)
-{
-	char *holder;
-	int l;
-
-	l = format_length(format);
-	format++;
-	holder = malloc(sizeof(char) * l);
-	ft_strlcpy(holder, format, l + 1);
-	return (holder);
-}
-
 long    ft_ltoi(const char *str)
 {
     long			i;
